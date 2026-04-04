@@ -108,7 +108,7 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showStickyWidget, setShowStickyWidget] = useState(true);
 
-  const CONTACT_EMAIL = "thebridgefund2026@gmail.com";
+  const CONTACT_EMAIL = "info@thenigerianbridgefund.org";
   const APPLICATION_URL =
     "https://docs.google.com/forms/d/e/1FAIpQLSd52rxfTvOw64VYkuiv7B_NZiN-YdO7NYpyl5MpnBRloZW27A/viewform";
   const PRIMARY_DONATE_URL =

@@ -267,7 +267,7 @@ export default function App() {
         <section className="mx-auto grid max-w-7xl items-center gap-8 px-4 py-12 sm:gap-10 sm:px-6 sm:py-20 md:grid-cols-2">
           <div>
             <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
-              A temporary delay should not define a graduate’s future.
+              Emergency support for Nigerian graduates in the U.S. facing work authorization delays.
             </h1>
 
             <div className="mt-3 flex items-center gap-2 text-sm text-slate-500">
@@ -277,7 +277,7 @@ export default function App() {
             </div>
 
             <p className="mt-5 text-lg text-slate-600">
-              Many recent Nigerian graduates in the U.S. are ready to begin their careers but are unable to work due to delays in employment authorization processing. For some, that delay means rent becomes stressful, food budgets shrink, and a moment that should feel hopeful starts to feel frightening. This fund exists to provide temporary, dignified support during that waiting period.
+              The Nigerian Bridge Fund helps Nigerian graduates in the United States who are unable to work because of employment authorization delays. For many applicants, that waiting period creates urgent pressure around rent, groceries, transportation, and basic stability at the very moment they should be starting their careers.
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -285,7 +285,7 @@ export default function App() {
                 onClick={() => openExternal(PRIMARY_DONATE_URL)}
                 className="w-full rounded-2xl bg-emerald-700 px-6 py-3 text-center font-semibold text-white shadow-sm sm:w-auto"
               >
-                Support the Fund
+                Donate to Support a Graduate
               </button>
               <a
                 href={APPLICATION_URL}
@@ -293,23 +293,23 @@ export default function App() {
                 rel="noopener noreferrer"
                 className="w-full rounded-2xl border px-6 py-3 text-center sm:w-auto"
               >
-                Apply for Support
+                Apply for Emergency Support
               </a>
             </div>
 
             <p className="mt-4 text-sm text-slate-500">Transparent • Community-driven • One-time direct support</p>
             <p className="mt-3 max-w-xl text-sm leading-6 text-slate-500">
-              A gift today can help protect someone’s housing, groceries, transportation, and peace of mind while they wait for the chance to start work.
+              Donations help protect housing, groceries, transportation, and peace of mind while graduates wait for legal authorization to begin work in the U.S.
             </p>
           </div>
 
           <div className="relative">
             <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-green-100 via-white to-blue-100 opacity-80 blur-2xl" />
             <div className="relative rounded-3xl border bg-white p-6 shadow-lg">
-              <div className="text-sm text-slate-500">Current Campaign</div>
+              <div className="text-sm text-slate-500">Emergency Support Campaign</div>
               <div className="mt-1 text-3xl font-bold">$25,000 Goal</div>
               <p className="mt-3 text-sm text-slate-600">
-                Supporting up to 50 graduates with one-time $500 assistance.
+                Providing one-time $500 emergency support to as many as 50 Nigerian graduates in the United States.
               </p>
               <div className="mt-4 rounded-2xl bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
                 <span className="font-semibold">$500 helps one graduate stay afloat.</span> Even smaller gifts matter when many people give together.
@@ -326,11 +326,11 @@ export default function App() {
             <div className="grid items-center gap-8 md:grid-cols-[1.1fr_0.9fr]">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">
-                  A bridge between two realities
+                  Support between graduation and employment
                 </p>
-                <h2 className="mt-3 text-3xl font-bold">From graduation in hope to employment in waiting.</h2>
+                <h2 className="mt-3 text-3xl font-bold">Helping Nigerian graduates stay stable while work authorization is delayed.</h2>
                 <p className="mt-4 leading-7 text-slate-600">
-                  This initiative sits at the intersection of Nigerian ambition and American opportunity. It exists to support graduates caught in the space between earning their degree and receiving the authorization needed to begin work.
+                  This nonprofit initiative supports Nigerian graduates caught between completing their education in the United States and receiving the legal authorization they need to start work, earn income, and move forward with dignity.
                 </p>
               </div>
 
@@ -375,9 +375,9 @@ export default function App() {
 
         <section className="mx-auto max-w-5xl px-4 pb-6 sm:px-6">
           <div className="rounded-[2rem] border border-amber-100 bg-amber-50 px-6 py-5 shadow-sm">
-            <div className="text-sm font-semibold uppercase tracking-wide text-amber-800">Why people give</div>
+            <div className="text-sm font-semibold uppercase tracking-wide text-amber-800">Why donors give</div>
             <p className="mt-2 leading-7 text-slate-700">
-              This is not about charity for charity’s sake. It is about helping talented graduates through a temporary administrative gap so a short delay does not spiral into a much bigger setback.
+              Donors support this fund because work authorization delays can quickly turn into housing stress, food insecurity, and financial instability for talented Nigerian graduates who are ready to work but temporarily unable to do so.
             </p>
           </div>
         </section>
@@ -401,29 +401,29 @@ export default function App() {
                 <div className="border-t border-slate-100 px-6 py-5">
                   <div className="text-sm font-medium text-slate-900">Founder’s Note</div>
                   <p className="mt-2 text-sm leading-6 text-slate-600">
-                    A community-led response to help Nigerian graduates navigate work authorization delays with dignity and temporary support.
+                    A community-led nonprofit supporting Nigerian graduates in the United States through work authorization delays with dignity and emergency relief.
                   </p>
                 </div>
               </div>
             </div>
 
             <div>
-              <h2 className="text-3xl font-bold">A note from the founder</h2>
+              <h2 className="text-3xl font-bold">Why The Nigerian Bridge Fund exists</h2>
               <p className="mt-4 leading-7 text-slate-600">
-                This fund was created after seeing firsthand how administrative delays can place talented graduates in difficult financial situations through no fault of their own.
+                The Nigerian Bridge Fund was created after seeing how administrative and immigration delays can place recent Nigerian graduates in the United States under severe financial pressure through no fault of their own.
               </p>
               <p className="mt-4 leading-7 text-slate-600">
-                These are individuals who have done everything right — completed their education, secured opportunities, and are ready to contribute. This initiative exists to provide temporary support during that transition.
+                These are graduates who have completed their education, secured opportunities, and are ready to contribute. This initiative exists to provide temporary support while they wait for the authorization needed to begin working legally.
               </p>
               <div className="mt-5 rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm">
-                <div className="text-sm font-semibold text-slate-900">A moment like this can mean:</div>
+                <div className="text-sm font-semibold text-slate-900">Work authorization delays can mean:</div>
                 <ul className="mt-3 space-y-2 text-sm text-slate-600">
                   <li>• choosing between groceries and other basic bills</li>
                   <li>• struggling to cover rent while waiting for authorization</li>
                   <li>• carrying emotional stress at the very start of adult life</li>
                 </ul>
               </div>
-              <p className="mt-4 font-medium text-slate-800">— Tayo Kashogi</p>
+              <p className="mt-4 font-medium text-slate-800">Community-led. Transparent. Built for relief.</p>
             </div>
           </div>
         </section>
@@ -459,24 +459,24 @@ export default function App() {
         </section>
 
         <section id="how" className="mx-auto max-w-7xl border-t border-blue-100 px-4 py-12 sm:px-6 sm:py-16">
-          <h2 className="text-center text-3xl font-bold">How the fund works</h2>
+          <h2 className="text-center text-3xl font-bold">How emergency support for applicants works</h2>
           <div className="mt-8 grid gap-4 text-center sm:mt-10 sm:gap-6 md:grid-cols-3">
             <div>
               <div className="font-semibold">Apply</div>
               <p className="mt-2 text-sm text-slate-600">
-                Graduates submit a short application with verification
+                Nigerian graduates submit a short support application with verification
               </p>
             </div>
             <div>
               <div className="font-semibold">Review</div>
               <p className="mt-2 text-sm text-slate-600">
-                Applications are reviewed based on eligibility and need
+                Applications are reviewed based on eligibility, urgency, and available funds
               </p>
             </div>
             <div>
               <div className="font-semibold">Support</div>
               <p className="mt-2 text-sm text-slate-600">
-                Approved applicants receive one-time financial assistance
+                Approved applicants receive one-time emergency financial assistance
               </p>
             </div>
           </div>
@@ -529,7 +529,7 @@ export default function App() {
           <div className="rounded-[2rem] border border-slate-200 bg-slate-50 px-6 py-5 text-center shadow-sm">
             <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">A simple act of relief</div>
             <p className="mt-2 leading-7 text-slate-700">
-              For a graduate living in uncertainty, even a modest gift can create breathing room, preserve dignity, and remind them they are not facing this season alone.
+              For a Nigerian graduate living in uncertainty, even a modest donation can create breathing room, preserve dignity, and reduce the impact of a temporary work authorization delay.
             </p>
           </div>
         </section>
@@ -554,15 +554,15 @@ export default function App() {
           id="apply"
           className="border-t border-blue-100 bg-slate-50 px-4 py-12 text-center sm:px-6 sm:py-16"
         >
-          <h2 className="text-3xl font-bold">Need Support?</h2>
-          <p className="mt-4 text-slate-600">If you meet the eligibility criteria, apply by clicking below.</p>
+          <h2 className="text-3xl font-bold">Apply for emergency support</h2>
+          <p className="mt-4 text-slate-600">If you are a Nigerian graduate in the U.S. who meets the eligibility criteria, submit your application below.</p>
           <a
             href={APPLICATION_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-6 inline-block w-full rounded-xl bg-black px-6 py-3 text-white sm:w-auto"
           >
-            Apply for Support
+            Apply for Emergency Support
           </a>
         </section>
 
@@ -570,7 +570,7 @@ export default function App() {
           <div className="mx-auto max-w-5xl">
             <div className="text-center">
               <div className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-800">FAQ</div>
-              <h2 className="mt-3 text-3xl font-bold text-slate-900">Common questions, answered simply</h2>
+              <h2 className="mt-3 text-3xl font-bold text-slate-900">Common questions from applicants and donors</h2>
               <p className="mx-auto mt-4 max-w-2xl leading-7 text-slate-600">
                 This section is here to answer the questions people are most likely to ask before emailing the team.
               </p>
@@ -595,7 +595,7 @@ export default function App() {
             <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr]">
               <div>
                 <div className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Contact Us</div>
-                <h2 className="mt-3 text-3xl font-bold text-slate-900">Questions about the NGO or support process?</h2>
+                <h2 className="mt-3 text-3xl font-bold text-slate-900">Questions about the nonprofit or support process?</h2>
                 <p className="mt-4 leading-7 text-slate-600">
                   If you have questions about eligibility, donations, partnerships, or the mission of the fund, reach out by email and the team will respond as soon as possible.
                 </p>
@@ -641,16 +641,16 @@ export default function App() {
         </section>
 
         <section className="bg-gradient-to-r from-green-700 via-emerald-700 to-blue-700 px-4 py-12 text-center text-white sm:px-6 sm:py-16">
-          <h2 className="text-3xl font-bold">Help someone stay hopeful while they wait</h2>
+          <h2 className="text-3xl font-bold">Help a Nigerian graduate stay hopeful while they wait</h2>
           <p className="mx-auto mt-4 max-w-2xl leading-7">
-            Your contribution helps provide stability for graduates navigating a temporary but challenging moment. It tells someone at the start of their career: you are seen, your struggle matters, and this delay will not define your future.
+            Your donation helps provide stability for Nigerian graduates navigating a temporary but deeply challenging work authorization delay. It tells someone at the start of their career: you are seen, your struggle matters, and this delay will not define your future.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <button
               onClick={() => openExternal(PRIMARY_DONATE_URL)}
               className="w-full rounded-xl bg-white px-6 py-3 font-semibold text-emerald-800 shadow-sm sm:w-auto"
             >
-              Donate with compassion
+              Donate to the fund
             </button>
             <div className="flex flex-wrap items-center justify-center gap-2 rounded-xl border border-white/30 px-3 py-2">
               <SocialIcon label="Share on LinkedIn" href={shareLinks.linkedin}><LinkedInIcon /></SocialIcon>

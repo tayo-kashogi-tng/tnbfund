@@ -106,9 +106,9 @@ function MenuIcon({ open }) {
 
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [todayDonors] = useState(14);
   const [showStickyWidget, setShowStickyWidget] = useState(true);
 
+  const CONTACT_EMAIL = "thebridgefund2026@gmail.com";
   const APPLICATION_URL =
     "https://docs.google.com/forms/d/e/1FAIpQLSd52rxfTvOw64VYkuiv7B_NZiN-YdO7NYpyl5MpnBRloZW27A/viewform";
   const PRIMARY_DONATE_URL =
@@ -136,6 +136,38 @@ export default function App() {
     { amount: "$100", label: "Relieves immediate pressure" },
     { amount: "$250", label: "Supports urgent needs" },
     { amount: "$500", label: "Supports one graduate" },
+  ];
+
+  const testimonials = [
+    {
+      quote:
+        "Living in the United States, where bills never seem to stop and the cost of survival is high, life without a job or a driver's license has been incredibly demanding, especially as I care for my daughter. After completing my master's degree in December 2025, I have faced one immigration hurdle after another, each requiring significant financial sacrifice. Just as I was celebrating that my work authorization was on the way, my country was suddenly placed on a temporary hold. Since then, I have been surviving on my savings and the kindness of loved ones while doing everything I can to provide for my daughter. Even through these setbacks, I remain hopeful and resilient. My greatest motivation is building a stable future for both of us, and I am determined to keep pushing forward.",
+      name: "Temitope",
+      location: "Houston, Texas",
+    },
+  ];
+
+  const faqs = [
+    {
+      question: "Who can apply for support?",
+      answer:
+        "The fund is designed for Nigerian graduates in the United States who are experiencing financial strain while waiting for work authorization or facing a similar transition-related gap.",
+    },
+    {
+      question: "How is support decided?",
+      answer:
+        "Applications are reviewed based on eligibility, urgency, and available funds. Support is intended to be one-time relief for essential needs during a temporary difficult period.",
+    },
+    {
+      question: "What kind of expenses can this help with?",
+      answer:
+        "Support may help with urgent basics like groceries, rent pressure, transportation, and other immediate essentials while someone is waiting for stability.",
+    },
+    {
+      question: "How can I ask a question before applying?",
+      answer:
+        "Use the contact section below to email the team directly if you need clarity on eligibility, documentation, or how the process works.",
+    },
   ];
 
   useEffect(() => {
@@ -174,9 +206,12 @@ export default function App() {
           <nav className="hidden gap-6 text-sm md:flex">
             <a href="#about" className="hover:text-emerald-700">About</a>
             <a href="#bridge" className="hover:text-emerald-700">The Bridge</a>
+            <a href="#testimonials" className="hover:text-emerald-700">Testimonials</a>
             <a href="#how" className="hover:text-emerald-700">How it Works</a>
+            <a href="#faq" className="hover:text-emerald-700">FAQ</a>
             <a href="#donate" className="hover:text-emerald-700">Donate</a>
             <a href="#apply" className="hover:text-emerald-700">Apply</a>
+            <a href="#contact" className="hover:text-emerald-700">Contact</a>
           </nav>
 
           <div className="flex items-center gap-2">
@@ -204,9 +239,12 @@ export default function App() {
             <div className="flex flex-col gap-4 text-sm">
               <a href="#about" onClick={closeMenu} className="hover:text-emerald-700">About</a>
               <a href="#bridge" onClick={closeMenu} className="hover:text-emerald-700">The Bridge</a>
+              <a href="#testimonials" onClick={closeMenu} className="hover:text-emerald-700">Testimonials</a>
               <a href="#how" onClick={closeMenu} className="hover:text-emerald-700">How it Works</a>
+              <a href="#faq" onClick={closeMenu} className="hover:text-emerald-700">FAQ</a>
               <a href="#donate" onClick={closeMenu} className="hover:text-emerald-700">Donate</a>
               <a href="#apply" onClick={closeMenu} className="hover:text-emerald-700">Apply</a>
+              <a href="#contact" onClick={closeMenu} className="hover:text-emerald-700">Contact</a>
               <button
                 onClick={() => openExternal(PRIMARY_DONATE_URL)}
                 className="mt-2 rounded-xl bg-emerald-700 px-4 py-2 text-left text-white"
@@ -221,7 +259,7 @@ export default function App() {
       <main>
         <section className="border-b border-amber-100 bg-amber-50/80">
           <div className="mx-auto flex max-w-7xl items-center justify-center gap-2 px-4 py-2.5 text-center text-xs text-amber-900 sm:px-6 sm:text-sm">
-            <span className="font-semibold">{todayDonors} people donated today.</span>
+            <span className="font-semibold">More people are stepping in to support this fund.</span>
             <span className="hidden sm:inline">Your gift can help support the next graduate.</span>
           </div>
         </section>
@@ -269,9 +307,9 @@ export default function App() {
             <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-green-100 via-white to-blue-100 opacity-80 blur-2xl" />
             <div className="relative rounded-3xl border bg-white p-6 shadow-lg">
               <div className="text-sm text-slate-500">Current Campaign</div>
-              <div className="mt-1 text-3xl font-bold">$10,000 Goal</div>
+              <div className="mt-1 text-3xl font-bold">$25,000 Goal</div>
               <p className="mt-3 text-sm text-slate-600">
-                Supporting up to 20 graduates with one-time $500 assistance.
+                Supporting up to 50 graduates with one-time $500 assistance.
               </p>
               <div className="mt-4 rounded-2xl bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
                 <span className="font-semibold">$500 helps one graduate stay afloat.</span> Even smaller gifts matter when many people give together.
@@ -347,15 +385,15 @@ export default function App() {
         <section id="about" className="border-t border-green-100 bg-slate-50 px-4 py-12 sm:px-6 sm:py-16">
           <div className="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-2">
             <div className="relative mx-auto w-full max-w-sm">
-              <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-green-100 via-white to-blue-100 opacity-90 blur-xl" />
+              <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-amber-100 via-white to-emerald-100 opacity-90 blur-xl" />
               <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-lg">
                 <div className="relative">
                   <img
                     src={founderPortrait}
                     alt="Portrait of founder Tayo Kashogi"
-                    className="h-[26rem] w-full object-cover object-center"
+                    className="h-[26rem] w-full object-cover object-[center_28%] brightness-[1.03] saturate-[1.02]"
                   />
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent px-6 pb-6 pt-16 text-white">
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/70 via-slate-950/15 to-transparent px-6 pb-6 pt-16 text-white">
                     <div className="text-xl font-semibold">Tayo Kashogi</div>
                     <div className="mt-1 text-sm text-white/80">Founder</div>
                   </div>
@@ -386,6 +424,36 @@ export default function App() {
                 </ul>
               </div>
               <p className="mt-4 font-medium text-slate-800">— Tayo Kashogi</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="testimonials" className="border-t border-amber-100 bg-amber-50/60 px-4 py-12 sm:px-6 sm:py-16">
+          <div className="mx-auto max-w-5xl">
+            <div className="text-center">
+              <div className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-800">Testimonial</div>
+              <h2 className="mt-3 text-3xl font-bold text-slate-900">A real story behind the waiting</h2>
+              <p className="mx-auto mt-4 max-w-2xl leading-7 text-slate-600">
+                Behind every delayed authorization is a graduate trying to stay steady, care for family, and hold on to hope.
+              </p>
+            </div>
+
+            <div className="mt-10">
+              {testimonials.map((testimonial) => (
+                <article
+                  key={testimonial.name}
+                  className="rounded-[2rem] border border-amber-100 bg-white p-6 shadow-sm sm:p-8"
+                >
+                  <div className="text-5xl leading-none text-amber-300">"</div>
+                  <p className="mt-3 text-base leading-8 text-slate-700 sm:text-lg">
+                    {testimonial.quote}
+                  </p>
+                  <div className="mt-6 border-t border-slate-100 pt-4">
+                    <div className="font-semibold text-slate-900">{testimonial.name}</div>
+                    <div className="mt-1 text-sm text-slate-500">{testimonial.location}</div>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
@@ -498,6 +566,80 @@ export default function App() {
           </a>
         </section>
 
+        <section id="faq" className="border-t border-amber-100 bg-amber-50/50 px-4 py-12 sm:px-6 sm:py-16">
+          <div className="mx-auto max-w-5xl">
+            <div className="text-center">
+              <div className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-800">FAQ</div>
+              <h2 className="mt-3 text-3xl font-bold text-slate-900">Common questions, answered simply</h2>
+              <p className="mx-auto mt-4 max-w-2xl leading-7 text-slate-600">
+                This section is here to answer the questions people are most likely to ask before emailing the team.
+              </p>
+            </div>
+
+            <div className="mt-10 grid gap-4">
+              {faqs.map((faq) => (
+                <div
+                  key={faq.question}
+                  className="rounded-2xl border border-amber-100 bg-white px-5 py-5 shadow-sm"
+                >
+                  <h3 className="text-lg font-semibold text-slate-900">{faq.question}</h3>
+                  <p className="mt-2 leading-7 text-slate-600">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className="border-t border-emerald-100 bg-white px-4 py-12 sm:px-6 sm:py-16">
+          <div className="mx-auto max-w-5xl rounded-[2rem] border border-slate-200 bg-slate-50 p-6 shadow-sm sm:p-8">
+            <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr]">
+              <div>
+                <div className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Contact Us</div>
+                <h2 className="mt-3 text-3xl font-bold text-slate-900">Questions about the NGO or support process?</h2>
+                <p className="mt-4 leading-7 text-slate-600">
+                  If you have questions about eligibility, donations, partnerships, or the mission of the fund, reach out by email and the team will respond as soon as possible.
+                </p>
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="mt-6 inline-flex rounded-xl bg-emerald-700 px-5 py-3 font-semibold text-white shadow-sm"
+                >
+                  Email the team
+                </a>
+                <p className="mt-3 text-sm text-slate-500">
+                  To reduce spam and keep communication manageable, inquiries are handled through a shared email inbox.
+                </p>
+              </div>
+
+              <div className="grid gap-4">
+                <a
+                  href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Question about support application")}`}
+                  className="rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm transition hover:border-emerald-300"
+                >
+                  <div className="font-semibold text-slate-900">Application Questions</div>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    Reach out if you are unsure whether you qualify or need clarity before applying.
+                  </p>
+                </a>
+
+                <a
+                  href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Donation or partnership inquiry")}`}
+                  className="rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm transition hover:border-emerald-300"
+                >
+                  <div className="font-semibold text-slate-900">Donation and Partnership Questions</div>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    Use this for sponsorships, collaborations, media outreach, or donor-related questions.
+                  </p>
+                </a>
+
+                <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm">
+                  <div className="font-semibold text-slate-900">Primary Email</div>
+                  <p className="mt-2 text-sm text-slate-600">{CONTACT_EMAIL}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="bg-gradient-to-r from-green-700 via-emerald-700 to-blue-700 px-4 py-12 text-center text-white sm:px-6 sm:py-16">
           <h2 className="text-3xl font-bold">Help someone stay hopeful while they wait</h2>
           <p className="mx-auto mt-4 max-w-2xl leading-7">
@@ -557,7 +699,7 @@ export default function App() {
               <div className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
                 Live fundraiser
               </div>
-              <div className="truncate text-sm text-slate-700">{todayDonors} people donated today</div>
+              <div className="truncate text-sm text-slate-700">Every gift helps another graduate stay afloat</div>
             </div>
             <button
               onClick={() => openExternal(PRIMARY_DONATE_URL)}
@@ -572,7 +714,11 @@ export default function App() {
       <footer className="border-t pb-28 pt-10 text-center text-sm text-slate-500 md:pb-10">
         <div className="mb-4 h-1 w-full bg-gradient-to-r from-green-600 via-white to-blue-600" />
         <p>The Nigerian Bridge Fund • Community-led • Transparent</p>
-        <p className="mt-2">thenbfund@gmail.com</p>
+        <p className="mt-2">
+          <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-emerald-700">
+            {CONTACT_EMAIL}
+          </a>
+        </p>
       </footer>
     </div>
   );

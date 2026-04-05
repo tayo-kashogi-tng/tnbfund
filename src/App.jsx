@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import founderPortrait from "./assets/tayo-salawu-themed.jpeg";
 import ibrahimAkoredePortrait from "./assets/ibrahim-akorede-themed.jpeg";
-import yemiAdedejiPortrait from "./assets/yemi-adedeji-themed-v2.jpeg";
+import yemiAdedejiPortrait from "./assets/yemi-adedeji-themed-v3.jpeg";
 
 function SocialIcon({ label, children, href, onClick }) {
   if (href) {
@@ -242,7 +242,7 @@ export default function App() {
       imageClassName: "object-[center_28%]",
       instagram: "https://www.instagram.com/tayokashogi/",
       summary:
-        "An adept technology thought leader providing strategic leadership for the initiative and helping shape the fund's mission, outreach, and support strategy for Nigerian Bridge Fund NGO.",
+        "AI and IT technical leader with over a decade of experience delivering enterprise technology strategy, platform transformation, and scalable digital solutions. He provides strategic leadership for the initiative and helps shape the fund's mission, outreach, and support strategy for Nigerian graduates in the United States.",
     },
     {
       name: "Yemi Adedeji",
@@ -252,7 +252,7 @@ export default function App() {
       imageClassName: "object-[center_18%]",
       instagram: "https://www.instagram.com/deyemzy_/",
       summary:
-        "A cloud computing professional who supports board coordination, record-keeping, and strong governance as part of the leadership team. He also helps reinforce the structure, accountability, and operational discipline.",
+        "Cloud Architect and DevSecOps Engineer with deep expertise in AWS, cloud security, and infrastructure engineering. He has led critical cloud initiatives across enterprise and public sector environments and remains passionate about supporting initiatives that create practical, real-world impact during critical moments.",
     },
     {
       name: "Ibrahim Akorede",
@@ -262,7 +262,7 @@ export default function App() {
       imageClassName: "object-[center_18%]",
       instagram: "https://www.instagram.com/yomi.ai/",
       summary:
-        "An experienced technical project manager who provides financial oversight and board leadership, helping ensure the fund remains accountable, transparent, and well-positioned to serve applicants responsibly.",
+        "Technical Project Manager with deep expertise in cloud contact center implementations. He brings a strong track record of cross-functional leadership, stakeholder governance, and AWS-architected solutions, alongside a passion for using technology to drive meaningful community impact.",
     },
   ];
 
@@ -383,9 +383,9 @@ export default function App() {
         </section>
 
         <section className="mx-auto grid max-w-7xl items-center gap-8 px-4 py-12 sm:gap-10 sm:px-6 sm:py-20 md:grid-cols-2">
-          <div>
-            <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
-              Emergency support for Nigerian graduates in the U.S. facing work authorization delays.
+          <div className="max-w-2xl">
+            <h1 className="text-4xl font-bold leading-tight sm:text-[3.35rem] md:text-[3.9rem] md:leading-[1.04]">
+              Emergency relief for Nigerian graduates in the U.S.
             </h1>
 
             <div className="mt-3 flex items-center gap-2 text-sm text-slate-500">
@@ -394,8 +394,14 @@ export default function App() {
               <span>🇺🇸 United States</span>
             </div>
 
-            <p className="mt-5 text-lg text-slate-600">
-              The Nigerian Bridge Fund provides emergency relief for Nigerian graduates in the United States who are temporarily unable to work because of employment authorization delays. For many applicants, that waiting period creates immediate pressure around rent, groceries, transportation, and basic stability.
+            <div className="mt-4">
+              <span className="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-sm font-semibold text-emerald-800">
+                #LiftTheHold
+              </span>
+            </div>
+
+            <p className="mt-5 max-w-xl text-lg text-slate-600">
+              We support graduates facing work authorization delays and short-term financial pressure while they wait to begin work legally in the United States.
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">

@@ -17,14 +17,12 @@ This project now includes a Vercel header configuration in [vercel.json](./verce
 
 ### CSP notes
 
-The site loads a third-party GoFundMe embed, so the CSP intentionally allows GoFundMe for:
+The site links out to GoFundMe and may evolve to include other trusted third-party services. The CSP is intentionally strict by default and should be updated carefully whenever you add:
 
-- `script-src`
-- `style-src`
-- `connect-src`
-- `frame-src`
-
-If you later add another external service such as a form provider, analytics tool, or image CDN, you will likely need to update the CSP to allow that domain explicitly.
+- a form provider
+- analytics
+- a widget or embed
+- an external image or font CDN
 
 ## Local development
 
@@ -53,10 +51,10 @@ Use this checklist whenever you update the live site:
 4. Verify the Google Form and linked Sheet are only accessible to the minimum required admins.
 5. Deploy the latest commit to Vercel.
 6. After deployment, check the homepage and confirm:
-   the GoFundMe widget still loads
+   the GoFundMe donation links open correctly
    the Google Form link opens correctly
    email links still open correctly
-   the FAQ, contact, and donation sections render normally
+   the FAQ, contact, transparency, and donation sections render normally
 7. Confirm response headers in production. For example:
 
 ```bash
@@ -72,8 +70,8 @@ Check for these headers:
 - `x-frame-options`
 - `permissions-policy`
 
-8. If the GoFundMe widget stops rendering after a security change, review `Content-Security-Policy` first.
-9. Avoid adding inline scripts, custom backend endpoints, or new third-party embeds without reviewing the CSP.
+8. If any new third-party service stops loading after a security change, review `Content-Security-Policy` first.
+9. Avoid adding inline scripts, new third-party embeds, or new external services without reviewing the CSP.
 10. Keep dependencies updated intentionally and deploy from the lockfile-backed install.
 
 ## Operational recommendations
@@ -124,7 +122,7 @@ Required variables:
 METRICS_SOURCE=google_sheets
 GOOGLE_SHEETS_API_KEY=your_google_api_key
 GOOGLE_SHEETS_SPREADSHEET_ID=your_sheet_id
-GOOGLE_SHEETS_RANGE=Dashboard!A2:B6
+GOOGLE_SHEETS_RANGE=Dashboard!A2:B7
 ```
 
 Recommended sheet layout:

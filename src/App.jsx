@@ -201,14 +201,6 @@ export default function App() {
     instagram: PAGE_URL,
   };
 
-  const tiers = [
-    { amount: "$25", label: "Helps cover groceries" },
-    { amount: "$50", label: "Helps cover essentials" },
-    { amount: "$100", label: "Relieves immediate pressure" },
-    { amount: "$250", label: "Supports urgent needs" },
-    { amount: "$500", label: "Supports one graduate" },
-  ];
-
   const testimonials = [
     {
       quote:
@@ -335,10 +327,8 @@ export default function App() {
 
           <nav className="hidden gap-6 text-sm md:flex">
             <a href="#about" className="hover:text-emerald-700">About</a>
-            <a href="#bridge" className="hover:text-emerald-700">The Bridge</a>
-            <a href="#testimonials" className="hover:text-emerald-700">Testimonials</a>
             <a href="#how" className="hover:text-emerald-700">How it Works</a>
-            <a href="#faq" className="hover:text-emerald-700">FAQ</a>
+            <a href="#live-totals" className="hover:text-emerald-700">Transparency</a>
             <a href="#donate" className="hover:text-emerald-700">Donate</a>
             <a href="#apply" className="hover:text-emerald-700">Apply</a>
             <a href="#contact" className="hover:text-emerald-700">Contact</a>
@@ -368,10 +358,8 @@ export default function App() {
           <div className="border-t border-slate-200 bg-white px-4 py-4 md:hidden">
             <div className="flex flex-col gap-4 text-sm">
               <a href="#about" onClick={closeMenu} className="hover:text-emerald-700">About</a>
-              <a href="#bridge" onClick={closeMenu} className="hover:text-emerald-700">The Bridge</a>
-              <a href="#testimonials" onClick={closeMenu} className="hover:text-emerald-700">Testimonials</a>
               <a href="#how" onClick={closeMenu} className="hover:text-emerald-700">How it Works</a>
-              <a href="#faq" onClick={closeMenu} className="hover:text-emerald-700">FAQ</a>
+              <a href="#live-totals" onClick={closeMenu} className="hover:text-emerald-700">Transparency</a>
               <a href="#donate" onClick={closeMenu} className="hover:text-emerald-700">Donate</a>
               <a href="#apply" onClick={closeMenu} className="hover:text-emerald-700">Apply</a>
               <a href="#contact" onClick={closeMenu} className="hover:text-emerald-700">Contact</a>
@@ -389,8 +377,8 @@ export default function App() {
       <main>
         <section className="border-b border-amber-100 bg-amber-50/80">
           <div className="mx-auto flex max-w-7xl items-center justify-center gap-2 px-4 py-2.5 text-center text-xs text-amber-900 sm:px-6 sm:text-sm">
-            <span className="font-semibold">More people are stepping in to support this fund.</span>
-            <span className="hidden sm:inline">Your gift can help support the next graduate.</span>
+            <span className="font-semibold">Community-led emergency relief for Nigerian graduates in the U.S.</span>
+            <span className="hidden sm:inline">Every gift helps protect stability during a difficult waiting period.</span>
           </div>
         </section>
 
@@ -407,7 +395,7 @@ export default function App() {
             </div>
 
             <p className="mt-5 text-lg text-slate-600">
-              The Nigerian Bridge Fund helps Nigerian graduates in the United States who are unable to work because of employment authorization delays. For many applicants, that waiting period creates urgent pressure around rent, groceries, transportation, and basic stability at the very moment they should be starting their careers.
+              The Nigerian Bridge Fund provides emergency relief for Nigerian graduates in the United States who are temporarily unable to work because of employment authorization delays. For many applicants, that waiting period creates immediate pressure around rent, groceries, transportation, and basic stability.
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -429,7 +417,7 @@ export default function App() {
 
             <p className="mt-4 text-sm text-slate-500">Transparent • Community-driven • One-time direct support</p>
             <p className="mt-3 max-w-xl text-sm leading-6 text-slate-500">
-              Donations help protect housing, groceries, transportation, and peace of mind while graduates wait for legal authorization to begin work in the U.S.
+              Donations help protect essentials and peace of mind while graduates wait for legal authorization to begin work.
             </p>
           </div>
 
@@ -437,15 +425,15 @@ export default function App() {
             <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-green-100 via-white to-blue-100 opacity-80 blur-2xl" />
             <div className="relative rounded-3xl border bg-white p-6 shadow-lg">
               <div className="text-sm text-slate-500">Campaign Overview</div>
-              <div className="mt-1 text-3xl font-bold">Live progress below</div>
+              <div className="mt-1 text-3xl font-bold">Current fundraiser</div>
               <p className="mt-3 text-sm text-slate-600">
-                Our GoFundMe widget below is the live source for campaign totals and fundraising progress.
+                Support the active GoFundMe campaign and view the latest public totals directly on the fundraiser page.
               </p>
               <div className="mt-4 rounded-2xl bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
-                <span className="font-semibold">Emergency support helps cover urgent essentials.</span> Every contribution helps reduce pressure on a graduate facing a temporary delay.
+                <span className="font-semibold">Current campaign goal: $25,000.</span> Contributions of any size help reduce pressure on graduates facing a temporary delay.
               </div>
               <div className="mt-4 border-t pt-4 text-sm text-slate-500">
-                Applications are reviewed carefully, support is distributed directly, and live campaign updates are reflected in the embedded fundraiser.
+                Applications are reviewed carefully and support is distributed directly to eligible applicants.
               </div>
               <div className="mt-5">
                 <a
@@ -468,7 +456,7 @@ export default function App() {
                 <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">
                   Support between graduation and employment
                 </p>
-                <h2 className="mt-3 text-3xl font-bold">Helping Nigerian graduates stay stable while work authorization is delayed.</h2>
+                <h2 className="mt-3 text-3xl font-bold">Bridging the gap between graduation and legal work authorization.</h2>
                 <p className="mt-4 leading-7 text-slate-600">
                   This nonprofit initiative supports Nigerian graduates caught between completing their education in the United States and receiving the legal authorization they need to start work, earn income, and move forward with dignity.
                 </p>
@@ -517,7 +505,7 @@ export default function App() {
           <div className="rounded-[2rem] border border-amber-100 bg-amber-50 px-6 py-5 shadow-sm">
             <div className="text-sm font-semibold uppercase tracking-wide text-amber-800">Why donors give</div>
             <p className="mt-2 leading-7 text-slate-700">
-              Donors support this fund because work authorization delays can quickly turn into housing stress, food insecurity, and financial instability for talented Nigerian graduates who are ready to work but temporarily unable to do so.
+              Donors give because a temporary administrative delay can quickly become housing stress, food insecurity, and financial instability for graduates who are ready to work but legally unable to begin yet.
             </p>
           </div>
         </section>
@@ -572,36 +560,6 @@ export default function App() {
           </div>
         </section>
 
-        <section id="testimonials" className="border-t border-amber-100 bg-amber-50/60 px-4 py-12 sm:px-6 sm:py-16">
-          <div className="mx-auto max-w-5xl">
-            <div className="text-center">
-              <div className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-800">Testimonial</div>
-              <h2 className="mt-3 text-3xl font-bold text-slate-900">A real story behind the waiting</h2>
-              <p className="mx-auto mt-4 max-w-2xl leading-7 text-slate-600">
-                Behind every delayed authorization is a graduate trying to stay steady, care for family, and hold on to hope.
-              </p>
-            </div>
-
-            <div className="mt-10">
-              {testimonials.map((testimonial) => (
-                <article
-                  key={testimonial.name}
-                  className="rounded-[2rem] border border-amber-100 bg-white p-6 shadow-sm sm:p-8"
-                >
-                  <div className="text-5xl leading-none text-amber-300">"</div>
-                  <p className="mt-3 text-base leading-8 text-slate-700 sm:text-lg">
-                    {testimonial.quote}
-                  </p>
-                  <div className="mt-6 border-t border-slate-100 pt-4">
-                    <div className="font-semibold text-slate-900">{testimonial.name}</div>
-                    <div className="mt-1 text-sm text-slate-500">{testimonial.location}</div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section id="how" className="mx-auto max-w-7xl border-t border-blue-100 px-4 py-12 sm:px-6 sm:py-16">
           <h2 className="text-center text-3xl font-bold">How emergency support for applicants works</h2>
           <div className="mt-8 grid gap-4 text-center sm:mt-10 sm:gap-6 md:grid-cols-3">
@@ -626,23 +584,6 @@ export default function App() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-10">
-          <div className="grid gap-4 md:grid-cols-3">
-            <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm">
-              <div className="text-sm font-semibold text-slate-900">$25</div>
-              <div className="mt-1 text-sm text-slate-600">can help cover groceries for a few days</div>
-            </div>
-            <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm">
-              <div className="text-sm font-semibold text-slate-900">$100</div>
-              <div className="mt-1 text-sm text-slate-600">can ease immediate financial pressure</div>
-            </div>
-            <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm">
-              <div className="text-sm font-semibold text-slate-900">$500</div>
-              <div className="mt-1 text-sm text-slate-600">can fully support one graduate through this gap</div>
-            </div>
-          </div>
-        </section>
-
         <section id="live-totals" className="mx-auto max-w-7xl border-t border-slate-200 px-4 py-10 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-3xl rounded-[2rem] border border-slate-200 bg-white p-6 text-center shadow-sm">
             <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">Current Fundraiser</div>
@@ -656,7 +597,7 @@ export default function App() {
             </div>
 
             <p className="mt-4 text-sm text-slate-500">
-              We no longer rely on an embedded fundraiser for live totals here on the website. GoFundMe remains the source of truth for the most current campaign updates.
+              GoFundMe remains the source of truth for the latest public totals, campaign progress, and donation activity.
             </p>
 
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
@@ -680,15 +621,17 @@ export default function App() {
 
         <section className="mx-auto max-w-5xl px-4 py-6 sm:px-6 sm:py-10">
           <div className="rounded-[2rem] border border-slate-200 bg-slate-50 p-6 shadow-sm sm:p-8">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-              <div>
+            <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+              <div className="min-w-0">
                 <div className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Transparency Dashboard</div>
-                <h3 className="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+                <h3 className="mt-2 max-w-3xl text-xl font-bold text-slate-900 sm:text-2xl lg:text-[2rem] lg:leading-tight">
                   Funds received, support distributed, and current balance
                 </h3>
               </div>
               {metrics.status === "ready" && metrics.data?.lastUpdated && (
-                <div className="text-sm text-slate-500">Last updated: {metrics.data.lastUpdated}</div>
+                <div className="shrink-0 whitespace-nowrap text-sm text-slate-500">
+                  Last updated: {metrics.data.lastUpdated}
+                </div>
               )}
             </div>
 
@@ -752,29 +695,63 @@ export default function App() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-5xl px-4 pb-4 sm:px-6">
-          <div className="rounded-[2rem] border border-slate-200 bg-slate-50 px-6 py-5 text-center shadow-sm">
-            <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">A simple act of relief</div>
-            <p className="mt-2 leading-7 text-slate-700">
-              For a Nigerian graduate living in uncertainty, even a modest donation can create breathing room, preserve dignity, and reduce the impact of a temporary work authorization delay.
-            </p>
+        <section id="testimonials" className="border-t border-amber-100 bg-amber-50/60 px-4 py-12 sm:px-6 sm:py-16">
+          <div className="mx-auto max-w-5xl">
+            <div className="text-center">
+              <div className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-800">Testimonial</div>
+              <h2 className="mt-3 text-3xl font-bold text-slate-900">A real story behind the waiting</h2>
+              <p className="mx-auto mt-4 max-w-2xl leading-7 text-slate-600">
+                Behind every delayed authorization is a graduate trying to stay steady, care for family, and hold on to hope.
+              </p>
+            </div>
+
+            <div className="mt-10">
+              {testimonials.map((testimonial) => (
+                <article
+                  key={testimonial.name}
+                  className="rounded-[2rem] border border-amber-100 bg-white p-6 shadow-sm sm:p-8"
+                >
+                  <div className="text-5xl leading-none text-amber-300">"</div>
+                  <p className="mt-3 text-base leading-8 text-slate-700 sm:text-lg">
+                    {testimonial.quote}
+                  </p>
+                  <div className="mt-6 border-t border-slate-100 pt-4">
+                    <div className="font-semibold text-slate-900">{testimonial.name}</div>
+                    <div className="mt-1 text-sm text-slate-500">{testimonial.location}</div>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
         <section
           id="donate"
-          className="mx-auto grid max-w-7xl grid-cols-1 gap-4 border-t border-green-100 px-4 py-8 sm:grid-cols-2 sm:px-6 sm:py-10 lg:grid-cols-5"
+          className="mx-auto max-w-5xl border-t border-green-100 px-4 py-8 sm:px-6 sm:py-10"
         >
-          {tiers.map((tier) => (
-            <button
-              key={tier.amount}
-              onClick={() => openExternal(PRIMARY_DONATE_URL)}
-              className="min-h-[116px] rounded-2xl border p-5 text-left transition hover:border-emerald-300 hover:bg-emerald-50"
-            >
-              <div className="text-2xl font-bold">{tier.amount}</div>
-              <div className="mt-2 text-sm text-slate-600">{tier.label}</div>
-            </button>
-          ))}
+          <div className="rounded-[2rem] border border-slate-200 bg-white px-6 py-6 text-center shadow-sm sm:px-8">
+            <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">Give Freely</div>
+            <h3 className="mt-2 text-2xl font-bold text-slate-900">Every amount makes a meaningful difference</h3>
+            <p className="mx-auto mt-3 max-w-2xl leading-7 text-slate-600">
+              There is no fixed giving cap on this campaign. Every contribution, large or small, helps strengthen the relief available to Nigerian graduates navigating a temporary work authorization delay.
+            </p>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+              <button
+                onClick={() => openExternal(PRIMARY_DONATE_URL)}
+                className="rounded-xl bg-emerald-700 px-6 py-3 font-semibold text-white shadow-sm"
+              >
+                Donate any amount on GoFundMe
+              </button>
+              <a
+                href={PRIMARY_DONATE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-xl border border-slate-300 px-6 py-3 font-semibold text-slate-700"
+              >
+                View fundraiser details
+              </a>
+            </div>
+          </div>
         </section>
 
         <section
@@ -782,7 +759,7 @@ export default function App() {
           className="border-t border-blue-100 bg-slate-50 px-4 py-12 text-center sm:px-6 sm:py-16"
         >
           <h2 className="text-3xl font-bold">Apply for emergency support</h2>
-          <p className="mt-4 text-slate-600">If you are a Nigerian graduate in the U.S. who meets the eligibility criteria, submit your application below.</p>
+          <p className="mt-4 text-slate-600">If you are a Nigerian graduate in the U.S. and meet the eligibility criteria, submit your application below.</p>
           <a
             href={APPLICATION_URL}
             target="_blank"
@@ -870,7 +847,7 @@ export default function App() {
         <section className="bg-gradient-to-r from-green-700 via-emerald-700 to-blue-700 px-4 py-12 text-center text-white sm:px-6 sm:py-16">
           <h2 className="text-3xl font-bold">Help a Nigerian graduate stay hopeful while they wait</h2>
           <p className="mx-auto mt-4 max-w-2xl leading-7">
-            Your donation helps provide stability for Nigerian graduates navigating a temporary but deeply challenging work authorization delay. It tells someone at the start of their career: you are seen, your struggle matters, and this delay will not define your future.
+            Your donation helps provide stability for Nigerian graduates navigating a temporary but deeply challenging work authorization delay. It reminds someone at the start of their career that this delay does not have to define their future.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <button

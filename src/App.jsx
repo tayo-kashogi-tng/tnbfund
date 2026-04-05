@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import founderPortrait from "./assets/tayo-salawu-themed.jpeg";
+import founderPortrait from "./assets/tayo-salawu-outpaint-themed.jpeg";
 import ibrahimAkoredePortrait from "./assets/ibrahim-akorede-themed.jpeg";
 import yemiAdedejiPortrait from "./assets/yemi-adedeji-themed-v3.jpeg";
 
@@ -239,10 +239,10 @@ export default function App() {
       role: "Founder & Director",
       image: founderPortrait,
       alt: "Portrait of Tayo Salawu",
-      imageClassName: "object-[center_28%]",
+      imageClassName: "object-center brightness-[0.98] saturate-[0.92] contrast-[1.04]",
       instagram: "https://www.instagram.com/tayokashogi/",
       summary:
-        "AI and IT technical leader with over a decade of experience delivering enterprise technology strategy, platform transformation, and scalable digital solutions. He provides strategic leadership for the initiative and helps shape the fund's mission, outreach, and support strategy for Nigerian graduates in the United States.",
+        "AI and IT technical leader with over a decade of experience in enterprise technology strategy, platform transformation, and scalable digital solutions. He helps shape the fund's mission, outreach, and support strategy for Nigerian graduates in the United States.",
     },
     {
       name: "Yemi Adedeji",
@@ -252,7 +252,7 @@ export default function App() {
       imageClassName: "object-[center_18%]",
       instagram: "https://www.instagram.com/deyemzy_/",
       summary:
-        "Cloud Architect and DevSecOps Engineer with deep expertise in AWS, cloud security, and infrastructure engineering. He has led critical cloud initiatives across enterprise and public sector environments and remains passionate about supporting initiatives that create practical, real-world impact during critical moments.",
+        "Cloud Architect and DevSecOps Engineer with deep expertise in AWS, cloud security, and infrastructure engineering. He has led critical cloud initiatives across enterprise and public sector environments and supports initiatives that create practical, real-world impact during critical moments.",
     },
     {
       name: "Ibrahim Akorede",
@@ -262,7 +262,7 @@ export default function App() {
       imageClassName: "object-[center_18%]",
       instagram: "https://www.instagram.com/yomi.ai/",
       summary:
-        "Technical Project Manager with deep expertise in cloud contact center implementations. He brings a strong track record of cross-functional leadership, stakeholder governance, and AWS-architected solutions, alongside a passion for using technology to drive meaningful community impact.",
+        "Technical Project Manager with deep expertise in cloud contact center implementations. He brings strong cross-functional leadership, stakeholder governance, and AWS-architected solutions, alongside a passion for using technology to drive meaningful community impact.",
     },
   ];
 
@@ -386,7 +386,7 @@ export default function App() {
           </div>
         </section>
 
-        <section className="mx-auto grid max-w-7xl items-center gap-8 px-4 py-12 sm:gap-10 sm:px-6 sm:py-20 md:grid-cols-2">
+        <section className="mx-auto grid max-w-7xl items-center gap-8 px-4 py-10 sm:gap-10 sm:px-6 sm:py-20 md:grid-cols-2">
           <div className="max-w-2xl">
             <h1 className="text-4xl font-bold leading-tight sm:text-[3.35rem] md:text-[3.9rem] md:leading-[1.04]">
               Emergency relief for Nigerian graduates in the U.S.
@@ -459,7 +459,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="bridge" className="mx-auto max-w-7xl px-4 pb-10 sm:px-6 sm:pb-12">
+        <section id="bridge" className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 sm:pb-12">
           <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-gradient-to-r from-green-50 via-white to-blue-50 p-6 shadow-sm sm:p-8">
             <div className="grid items-center gap-8 md:grid-cols-[1.1fr_0.9fr]">
               <div>
@@ -522,7 +522,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="about" className="border-t border-green-100 bg-slate-50 px-4 py-12 sm:px-6 sm:py-16">
+        <section id="about" className="border-t border-green-100 bg-slate-50 px-4 py-10 sm:px-6 sm:py-16">
           <div className="mx-auto max-w-7xl">
             <div className="mx-auto max-w-3xl text-center">
               <div className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Leadership</div>
@@ -532,7 +532,7 @@ export default function App() {
               </p>
             </div>
 
-            <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            <div className="mt-8 grid gap-6 lg:grid-cols-3">
               {boardMembers.map((member) => (
                 <BoardMemberCard
                   key={member.name}
@@ -548,7 +548,7 @@ export default function App() {
               ))}
             </div>
 
-            <div className="mt-10 grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
+            <div className="mt-8 grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
               <div>
                 <h3 className="text-2xl font-bold">Why The Nigerian Bridge Fund exists</h3>
                 <p className="mt-4 leading-7 text-slate-600">
@@ -572,7 +572,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="how" className="mx-auto max-w-7xl border-t border-blue-100 px-4 py-12 sm:px-6 sm:py-16">
+        <section id="how" className="mx-auto max-w-7xl border-t border-blue-100 px-4 py-10 sm:px-6 sm:py-16">
           <h2 className="text-center text-3xl font-bold">How emergency support for applicants works</h2>
           <div className="mt-8 grid gap-4 text-center sm:mt-10 sm:gap-6 md:grid-cols-3">
             <div>
@@ -596,7 +596,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="live-totals" className="mx-auto max-w-7xl border-t border-slate-200 px-4 py-10 sm:px-6 sm:py-14">
+        <section id="live-totals" className="mx-auto max-w-7xl border-t border-slate-200 px-4 py-8 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-3xl rounded-[2rem] border border-slate-200 bg-white p-6 text-center shadow-sm">
             <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">Current Fundraiser</div>
             <h3 className="mt-2 text-2xl font-bold text-slate-900">Support the campaign directly on GoFundMe</h3>
@@ -631,7 +631,7 @@ export default function App() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-5xl px-4 py-6 sm:px-6 sm:py-10">
+        <section className="mx-auto max-w-5xl px-4 py-5 sm:px-6 sm:py-10">
           <div className="rounded-[2rem] border border-slate-200 bg-slate-50 p-6 shadow-sm sm:p-8">
             <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
               <div className="min-w-0">
@@ -707,7 +707,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="testimonials" className="border-t border-amber-100 bg-amber-50/60 px-4 py-12 sm:px-6 sm:py-16">
+        <section id="testimonials" className="border-t border-amber-100 bg-amber-50/60 px-4 py-10 sm:px-6 sm:py-16">
           <div className="mx-auto max-w-5xl">
             <div className="text-center">
               <div className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-800">Testimonial</div>
@@ -717,7 +717,7 @@ export default function App() {
               </p>
             </div>
 
-            <div className="mt-10">
+            <div className="mt-8">
               {testimonials.map((testimonial) => (
                 <article
                   key={testimonial.name}
@@ -739,7 +739,7 @@ export default function App() {
 
         <section
           id="donate"
-          className="mx-auto max-w-5xl border-t border-green-100 px-4 py-8 sm:px-6 sm:py-10"
+          className="mx-auto max-w-5xl border-t border-green-100 px-4 py-7 sm:px-6 sm:py-10"
         >
           <div className="rounded-[2rem] border border-slate-200 bg-white px-6 py-6 text-center shadow-sm sm:px-8">
             <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">Give Freely</div>
@@ -768,7 +768,7 @@ export default function App() {
 
         <section
           id="apply"
-          className="border-t border-blue-100 bg-slate-50 px-4 py-12 text-center sm:px-6 sm:py-16"
+          className="border-t border-blue-100 bg-slate-50 px-4 py-10 text-center sm:px-6 sm:py-16"
         >
           <h2 className="text-3xl font-bold">Apply for emergency support</h2>
           <p className="mt-4 text-slate-600">If you are a Nigerian graduate in the U.S. and meet the eligibility criteria, submit your application below.</p>
@@ -782,7 +782,7 @@ export default function App() {
           </a>
         </section>
 
-        <section id="faq" className="border-t border-amber-100 bg-amber-50/50 px-4 py-12 sm:px-6 sm:py-16">
+        <section id="faq" className="border-t border-amber-100 bg-amber-50/50 px-4 py-10 sm:px-6 sm:py-16">
           <div className="mx-auto max-w-5xl">
             <div className="text-center">
               <div className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-800">FAQ</div>
@@ -792,7 +792,7 @@ export default function App() {
               </p>
             </div>
 
-            <div className="mt-10 grid gap-4">
+            <div className="mt-8 grid gap-4">
               {faqs.map((faq) => (
                 <div
                   key={faq.question}
@@ -806,7 +806,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="contact" className="border-t border-emerald-100 bg-white px-4 py-12 sm:px-6 sm:py-16">
+        <section id="contact" className="border-t border-emerald-100 bg-white px-4 py-10 sm:px-6 sm:py-16">
           <div className="mx-auto max-w-5xl rounded-[2rem] border border-slate-200 bg-slate-50 p-6 shadow-sm sm:p-8">
             <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr]">
               <div>
@@ -856,7 +856,7 @@ export default function App() {
           </div>
         </section>
 
-        <section className="bg-gradient-to-r from-green-700 via-emerald-700 to-blue-700 px-4 py-12 text-center text-white sm:px-6 sm:py-16">
+        <section className="bg-gradient-to-r from-green-700 via-emerald-700 to-blue-700 px-4 py-10 text-center text-white sm:px-6 sm:py-16">
           <h2 className="text-3xl font-bold">Help a Nigerian graduate stay hopeful while they wait</h2>
           <p className="mx-auto mt-4 max-w-2xl leading-7">
             Your donation helps provide stability for Nigerian graduates navigating a temporary but deeply challenging work authorization delay. It reminds someone at the start of their career that this delay does not have to define their future.

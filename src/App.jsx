@@ -242,7 +242,7 @@ export default function App() {
       imageClassName: "object-center brightness-[0.98] saturate-[0.92] contrast-[1.04]",
       instagram: "https://www.instagram.com/tayokashogi/",
       summary:
-        "AI and IT technical leader with over a decade of experience in enterprise technology strategy, platform transformation, and scalable digital solutions. He helps shape the fund's mission, outreach, and support strategy for Nigerian graduates in the United States.",
+        "Tayo is an AI and IT technical leader with over a decade of experience in enterprise technology strategy, platform transformation, and scalable digital solutions. He has led impactful initiatives across complex environments, helping shape systems, strategy, and innovation with a practical, people-centered approach.\n\nHe is dedicated to supporting efforts that preserve stability, dignity, and opportunity when they matter.",
     },
     {
       name: "Yemi Adedeji",
@@ -252,7 +252,7 @@ export default function App() {
       imageClassName: "object-[center_18%]",
       instagram: "https://www.instagram.com/deyemzy_/",
       summary:
-        "Cloud Architect and DevSecOps Engineer with deep expertise in AWS, cloud security, and infrastructure engineering. He has led critical cloud initiatives across enterprise and public sector environments with a focus on practical, real-world impact.",
+        "Yemi is a Cloud Platform Architect and DevSecOps Engineer with deep expertise in AWS, cloud security, and infrastructure engineering. He has led critical cloud initiatives across enterprise and public sector environments, delivering secure, scalable, and compliant systems.\n\nHe is passionate about designing resilient solutions and backing initiatives that create stability and possibility during pivotal moments.",
     },
     {
       name: "Ibrahim Akorede",
@@ -262,7 +262,7 @@ export default function App() {
       imageClassName: "object-[center_18%]",
       instagram: "https://www.instagram.com/yomi.ai/",
       summary:
-        "Technical Project Manager with deep expertise in cloud contact center implementations. He brings strong cross-functional leadership, stakeholder governance, and AWS-architected solutions, alongside a passion for meaningful community impact.",
+        "Ibrahim is a Technical Project Manager with deep expertise in cloud contact center implementations, stakeholder governance, and AWS-architected solutions. He has led cross-functional initiatives across complex delivery environments, helping ensure accountability, structure, and strong operational execution.\n\nHe is driven to apply disciplined leadership in ways that strengthen communities.",
     },
   ];
 

@@ -607,7 +607,7 @@ export default function App() {
             <div className="mt-6">
               <div
                 className="gfm-embed"
-                data-url="https://www.gofundme.com/f/the-bridge-fund-2026-supporting-nigerian-graduates-in-amer/widget/medium?sharesheet=undefined&attribution_id=sl:ddcb0959-a41f-4d19-b954-3477d68d905c"
+                data-url="https://www.gofundme.com/f/the-bridge-fund-2026-supporting-nigerian-graduates-in-amer/widget/large?sharesheet=undefined&attribution_id=sl:ddcb0959-a41f-4d19-b954-3477d68d905c"
               ></div>
             </div>
 
@@ -787,7 +787,7 @@ export default function App() {
               <div className="max-h-[420px] overflow-auto bg-slate-50 p-3">
                 <div
                   className="gfm-embed"
-                  data-url="https://www.gofundme.com/f/the-bridge-fund-2026-supporting-nigerian-graduates-in-amer/widget/medium?sharesheet=undefined&attribution_id=sl:ddcb0959-a41f-4d19-b954-3477d68d905c"
+                  data-url="https://www.gofundme.com/f/the-bridge-fund-2026-supporting-nigerian-graduates-in-amer/widget/large?sharesheet=undefined&attribution_id=sl:ddcb0959-a41f-4d19-b954-3477d68d905c"
                 ></div>
               </div>
             </div>

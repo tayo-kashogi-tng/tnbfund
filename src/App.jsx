@@ -252,7 +252,7 @@ export default function App() {
       imageClassName: "object-[center_18%]",
       instagram: "https://www.instagram.com/deyemzy_/",
       summary:
-        "Cloud Architect and DevSecOps Engineer with deep expertise in AWS, cloud security, and infrastructure engineering. He has led critical cloud initiatives across enterprise and public sector environments and supports initiatives that create practical, real-world impact during critical moments.",
+        "Cloud Architect and DevSecOps Engineer with deep expertise in AWS, cloud security, and infrastructure engineering. He has led critical cloud initiatives across enterprise and public sector environments with a focus on practical, real-world impact.",
     },
     {
       name: "Ibrahim Akorede",
@@ -262,7 +262,7 @@ export default function App() {
       imageClassName: "object-[center_18%]",
       instagram: "https://www.instagram.com/yomi.ai/",
       summary:
-        "Technical Project Manager with deep expertise in cloud contact center implementations. He brings strong cross-functional leadership, stakeholder governance, and AWS-architected solutions, alongside a passion for using technology to drive meaningful community impact.",
+        "Technical Project Manager with deep expertise in cloud contact center implementations. He brings strong cross-functional leadership, stakeholder governance, and AWS-architected solutions, alongside a passion for meaningful community impact.",
     },
   ];
 

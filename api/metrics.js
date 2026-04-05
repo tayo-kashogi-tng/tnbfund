@@ -17,6 +17,36 @@ function parseNumber(value) {
   return Number.isFinite(parsed) ? parsed : null;
 }
 
+function formatDateValue(value) {
+  if (value === null || value === undefined || value === "") return null;
+
+  function formatDate(dateInfo) {
+    return new Intl.DateTimeFormat("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+      timeZone: "UTC",
+    }).format(dateInfo);
+  }
+
+  if (typeof value === "number" && Number.isFinite(value)) {
+    const utcDays = Math.floor(value - 25569);
+    const utcValue = utcDays * 86400;
+    const dateInfo = new Date(utcValue * 1000);
+
+    if (!Number.isNaN(dateInfo.getTime())) {
+      return formatDate(dateInfo);
+    }
+  }
+
+  const parsed = new Date(String(value));
+  if (!Number.isNaN(parsed.getTime())) {
+    return formatDate(parsed);
+  }
+
+  return String(value);
+}
+
 function normalizeKey(value) {
   return String(value ?? "")
     .trim()
@@ -43,8 +73,9 @@ function coerceMetrics(raw, sourceLabel) {
   const currentBalance = parseNumber(
     pickMetricValue(raw, ["current_balance", "current balance", "balance", "available_balance"])
   );
-  const lastUpdated =
-    pickMetricValue(raw, ["last_updated", "last updated", "updated_at", "updated"]) ?? null;
+  const lastUpdated = formatDateValue(
+    pickMetricValue(raw, ["last_updated", "last updated", "updated_at", "updated"]) ?? null
+  );
   const currency = pickMetricValue(raw, ["currency", "currency_code"]) ?? "USD";
   const note = pickMetricValue(raw, ["note", "notes", "summary"]) ?? null;
 

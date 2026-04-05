@@ -270,7 +270,7 @@ export default function App() {
       imageClassName: "object-[center_18%]",
       instagram: "https://www.instagram.com/yomi.ai/",
       summary:
-        "An experienced project manager who provides financial oversight and board leadership, helping ensure the fund remains accountable, transparent, and well-positioned to serve applicants responsibly.",
+        "An experienced technical project manager who provides financial oversight and board leadership, helping ensure the fund remains accountable, transparent, and well-positioned to serve applicants responsibly.",
     },
   ];
 

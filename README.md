@@ -81,3 +81,121 @@ Check for these headers:
 - Use a dedicated shared inbox or aliases like `contact@...` and `support@...` if you move to a custom domain email setup.
 - If you replace the public email with a contact form later, choose a provider with built-in anti-spam protection.
 - If you collect more sensitive applicant data in the future, reconsider Google Forms and move to a workflow with stronger privacy and access controls.
+
+## Transparency dashboard
+
+This project now includes a simple transparency dashboard powered by a Vercel Function at `api/metrics.js`.
+
+The site supports three modes:
+
+- `manual`
+- `google_sheets`
+- `airtable`
+
+Set the source with:
+
+```bash
+METRICS_SOURCE=manual
+```
+
+### Manual mode
+
+This is the fastest option and works immediately with Vercel environment variables.
+
+Required variables:
+
+```bash
+METRICS_SOURCE=manual
+MANUAL_TOTAL_RAISED=10000
+MANUAL_DEPLOYED_FUNDS=2500
+MANUAL_CURRENT_BALANCE=7500
+MANUAL_CURRENCY=USD
+MANUAL_LAST_UPDATED=2026-04-04
+MANUAL_NOTE=Updated manually by the team.
+```
+
+### Google Sheets mode
+
+Use this if you want the site to read values from a Google Sheet.
+
+Required variables:
+
+```bash
+METRICS_SOURCE=google_sheets
+GOOGLE_SHEETS_API_KEY=your_google_api_key
+GOOGLE_SHEETS_SPREADSHEET_ID=your_sheet_id
+GOOGLE_SHEETS_RANGE=Dashboard!A2:B6
+```
+
+Recommended sheet layout:
+
+```text
+total_raised      10000
+deployed_funds    2500
+current_balance   7500
+last_updated      2026-04-04
+currency          USD
+note              Updated manually from payout records.
+```
+
+Notes:
+
+- The simplest setup is a read-only sheet that is viewable by link.
+- The function uses the official Google Sheets API `spreadsheets.values.get` endpoint.
+
+### Airtable mode
+
+Use this if you want Airtable as the source of truth.
+
+Required variables:
+
+```bash
+METRICS_SOURCE=airtable
+AIRTABLE_PAT=your_airtable_personal_access_token
+AIRTABLE_BASE_ID=your_base_id
+AIRTABLE_TABLE_NAME=Metrics
+AIRTABLE_VIEW=Grid view
+```
+
+Recommended Airtable setup:
+
+- Table name: `Metrics`
+- One record per metric, with fields like:
+  - `Metric`
+  - `Value`
+
+Example rows:
+
+```text
+Metric            Value
+total_raised      10000
+deployed_funds    2500
+current_balance   7500
+last_updated      2026-04-04
+currency          USD
+note              Updated manually from payout records.
+```
+
+Notes:
+
+- The function uses Airtable's web API with a Personal Access Token.
+- Airtable access depends on your Airtable workspace limits, not your Vercel plan.
+
+## Vercel plan notes
+
+This implementation can run on Vercel Hobby because Vercel Functions are available there.
+
+However:
+
+- Hobby is best for lightweight, low-traffic usage and testing.
+- If this becomes a production transparency dashboard for an organization with regular traffic or stricter operational needs, Pro is the safer long-term choice.
+
+For Airtable specifically:
+
+- It can work on Vercel Hobby.
+- The more important limit is Airtable API quota and rate limits, not Vercel itself.
+
+For Google Sheets specifically:
+
+- It can also work on Vercel Hobby.
+- The main considerations are API key usage, sheet visibility, and your refresh/update process.

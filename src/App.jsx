@@ -159,9 +159,25 @@ function BoardMemberCard({
   );
 }
 
+function formatCurrency(amount, currency) {
+  try {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency,
+      maximumFractionDigits: 2,
+    }).format(amount);
+  } catch {
+    return `${currency} ${amount.toLocaleString("en-US")}`;
+  }
+}
+
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showStickyWidget, setShowStickyWidget] = useState(true);
+  const [metrics, setMetrics] = useState({
+    status: "loading",
+    data: null,
+    error: null,
+  });
 
   const CONTACT_EMAIL = "info@thenigerianbridgefund.org";
   const APPLICATION_URL =
@@ -258,19 +274,8 @@ export default function App() {
     },
   ];
 
-  useEffect(() => {
-    if (document.getElementById("gfm-script")) return;
-
-    const script = document.createElement("script");
-    script.src = "https://www.gofundme.com/static/js/embed.js";
-    script.defer = true;
-    script.id = "gfm-script";
-    document.body.appendChild(script);
-  }, []);
-
   const openExternal = (url) => window.open(url, "_blank", "noopener,noreferrer");
   const closeMenu = () => setMobileMenuOpen(false);
-  const hideStickyWidget = () => setShowStickyWidget(false);
 
   const handleCopyLink = async () => {
     try {
@@ -280,6 +285,43 @@ export default function App() {
       alert("Copy failed — please copy manually.");
     }
   };
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadMetrics() {
+      try {
+        const response = await fetch("/api/metrics");
+        const payload = await response.json();
+
+        if (!response.ok) {
+          throw new Error(payload.error || "Unable to load transparency metrics");
+        }
+
+        if (!cancelled) {
+          setMetrics({
+            status: "ready",
+            data: payload,
+            error: null,
+          });
+        }
+      } catch (error) {
+        if (!cancelled) {
+          setMetrics({
+            status: "error",
+            data: null,
+            error: error instanceof Error ? error.message : "Unable to load transparency metrics",
+          });
+        }
+      }
+    }
+
+    loadMetrics();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-white text-slate-900">
@@ -407,10 +449,12 @@ export default function App() {
               </div>
               <div className="mt-5">
                 <a
-                  href="#live-totals"
+                  href={PRIMARY_DONATE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex rounded-xl bg-emerald-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm"
                 >
-                  View live totals
+                  View fundraiser on GoFundMe
                 </a>
               </div>
             </div>
@@ -601,27 +645,105 @@ export default function App() {
 
         <section id="live-totals" className="mx-auto max-w-7xl border-t border-slate-200 px-4 py-10 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-3xl rounded-[2rem] border border-slate-200 bg-white p-6 text-center shadow-sm">
-            <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">Live Campaign</div>
-            <h3 className="mt-2 text-2xl font-bold text-slate-900">Live totals from GoFundMe</h3>
-
-            <div className="mt-6">
-              <div
-                className="gfm-embed"
-                data-url="https://www.gofundme.com/f/the-bridge-fund-2026-supporting-nigerian-graduates-in-amer/widget/large?sharesheet=undefined&attribution_id=sl:ddcb0959-a41f-4d19-b954-3477d68d905c"
-              ></div>
+            <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">Current Fundraiser</div>
+            <h3 className="mt-2 text-2xl font-bold text-slate-900">Support the campaign directly on GoFundMe</h3>
+            <div className="mt-5 rounded-2xl bg-emerald-50 px-5 py-4 text-left text-emerald-950">
+              <div className="text-sm font-semibold uppercase tracking-wide text-emerald-800">Campaign Goal</div>
+              <div className="mt-2 text-3xl font-bold">$25,000</div>
+              <p className="mt-3 text-sm leading-6 text-emerald-900">
+                Visit the official GoFundMe campaign page to view the latest amount raised, current progress, and donation activity.
+              </p>
             </div>
 
             <p className="mt-4 text-sm text-slate-500">
-              This embedded fundraiser is the live source of truth for campaign totals and progress. As donations come in on GoFundMe, the widget updates here automatically.
+              We no longer rely on an embedded fundraiser for live totals here on the website. GoFundMe remains the source of truth for the most current campaign updates.
             </p>
 
-            <div className="mt-6">
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <button
                 onClick={() => openExternal(PRIMARY_DONATE_URL)}
                 className="rounded-xl bg-emerald-700 px-5 py-2.5 text-sm font-semibold text-white"
               >
                 Donate on GoFundMe
               </button>
+              <a
+                href={PRIMARY_DONATE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-xl border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-700"
+              >
+                View latest campaign totals
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-10">
+          <div className="rounded-[2rem] border border-slate-200 bg-slate-50 p-6 shadow-sm sm:p-8">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <div className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Transparency Dashboard</div>
+                <h3 className="mt-2 text-3xl font-bold text-slate-900">A simple view of funds received, distributed, and currently available</h3>
+              </div>
+              {metrics.status === "ready" && metrics.data?.lastUpdated && (
+                <div className="text-sm text-slate-500">Last updated: {metrics.data.lastUpdated}</div>
+              )}
+            </div>
+
+            <div className="mt-8 grid gap-4 lg:grid-cols-3">
+              {[
+                {
+                  label: "Total Received",
+                  helper: "Funds received into the initiative",
+                  accent: "border-emerald-200",
+                  value:
+                    metrics.status === "ready"
+                      ? formatCurrency(metrics.data.totalRaised, metrics.data.currency)
+                      : "Loading...",
+                },
+                {
+                  label: "Support Distributed",
+                  helper: "Funds already deployed to support graduates",
+                  accent: "border-amber-200",
+                  value:
+                    metrics.status === "ready"
+                      ? formatCurrency(metrics.data.deployedFunds, metrics.data.currency)
+                      : "Loading...",
+                },
+                {
+                  label: "Current Balance",
+                  helper: "Funds currently available for impact",
+                  accent: "border-blue-200",
+                  value:
+                    metrics.status === "ready"
+                      ? formatCurrency(metrics.data.currentBalance, metrics.data.currency)
+                      : "Loading...",
+                },
+              ].map((card) => (
+                <div
+                  key={card.label}
+                  className={`rounded-[1.5rem] border ${card.accent} bg-white p-5 shadow-sm`}
+                >
+                  <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">{card.label}</div>
+                  <div className="mt-3 text-3xl font-bold text-slate-900 sm:text-4xl">{card.value}</div>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">{card.helper}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm text-slate-600">
+              {metrics.status === "ready" ? (
+                <p>
+                  {metrics.data.note ??
+                    "These figures are maintained by the team and published here to support transparency around funds received, support distributed, and available balance."}
+                </p>
+              ) : metrics.status === "error" ? (
+                <p>
+                  Transparency data is temporarily unavailable. You can still view the fundraiser directly on GoFundMe while the dashboard source is being configured.
+                </p>
+              ) : (
+                <p>Loading transparency data...</p>
+              )}
             </div>
           </div>
         </section>
@@ -768,31 +890,6 @@ export default function App() {
             </div>
           </div>
         </section>
-
-        {showStickyWidget && (
-          <div className="fixed bottom-4 right-4 z-30 hidden w-[340px] xl:block">
-            <div className="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white shadow-2xl">
-              <button
-                type="button"
-                aria-label="Close floating fundraiser"
-                onClick={hideStickyWidget}
-                className="absolute right-3 top-3 z-10 rounded-full bg-white/90 px-2 py-1 text-xs font-semibold text-slate-600 shadow-sm"
-              >
-                ✕
-              </button>
-              <div className="border-b border-slate-100 px-4 pb-3 pt-4">
-                <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">Live Fundraiser</div>
-                <div className="mt-1 text-sm text-slate-700">Give while you browse</div>
-              </div>
-              <div className="max-h-[420px] overflow-auto bg-slate-50 p-3">
-                <div
-                  className="gfm-embed"
-                  data-url="https://www.gofundme.com/f/the-bridge-fund-2026-supporting-nigerian-graduates-in-amer/widget/large?sharesheet=undefined&attribution_id=sl:ddcb0959-a41f-4d19-b954-3477d68d905c"
-                ></div>
-              </div>
-            </div>
-          </div>
-        )}
 
         <div className="fixed inset-x-0 bottom-0 z-30 border-t border-slate-200 bg-white/95 px-4 py-3 shadow-[0_-6px_20px_rgba(15,23,42,0.08)] backdrop-blur xl:hidden">
           <div className="mx-auto flex max-w-7xl items-center gap-3">

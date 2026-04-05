@@ -236,7 +236,7 @@ export default function App() {
   const boardMembers = [
     {
       name: "Tayo Salawu",
-      role: "Director 1 and Founder",
+      role: "Founder & Director",
       image: founderPortrait,
       alt: "Portrait of Tayo Salawu",
       imageClassName: "object-[center_28%]",
@@ -246,7 +246,7 @@ export default function App() {
     },
     {
       name: "Yemi Adedeji",
-      role: "Director 2 and Secretary",
+      role: "Director & Secretary",
       image: yemiAdedejiPortrait,
       alt: "Portrait of Yemi Adedeji",
       imageClassName: "object-[center_18%]",
@@ -256,7 +256,7 @@ export default function App() {
     },
     {
       name: "Ibrahim Akorede",
-      role: "Director 3 and Treasurer",
+      role: "Director & Treasurer",
       image: ibrahimAkoredePortrait,
       alt: "Portrait of Ibrahim Akorede",
       imageClassName: "object-[center_18%]",
@@ -320,9 +320,13 @@ export default function App() {
       <header className="sticky top-0 z-20 border-b bg-white/95 backdrop-blur">
         <div className="h-1 w-full bg-gradient-to-r from-green-600 via-white to-blue-600" />
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:gap-4 sm:px-6 sm:py-4">
-          <div>
-            <div className="text-base font-semibold sm:text-lg">The Nigerian Bridge Fund</div>
-            <div className="text-[11px] text-slate-500 sm:text-xs">Community-led nonprofit initiative</div>
+          <div className="min-w-0 pr-2">
+            <div className="max-w-[14rem] text-base font-semibold leading-tight sm:max-w-none sm:text-lg">
+              The Nigerian Bridge Fund
+            </div>
+            <div className="text-[11px] leading-tight text-slate-500 sm:text-xs">
+              Community-led nonprofit initiative
+            </div>
           </div>
 
           <nav className="hidden gap-6 text-sm md:flex">
@@ -376,7 +380,7 @@ export default function App() {
 
       <main>
         <section className="border-b border-amber-100 bg-amber-50/80">
-          <div className="mx-auto flex max-w-7xl items-center justify-center gap-2 px-4 py-2.5 text-center text-xs text-amber-900 sm:px-6 sm:text-sm">
+          <div className="mx-auto flex max-w-7xl items-center justify-center gap-2 px-4 py-2.5 text-center text-xs leading-relaxed text-amber-900 sm:px-6 sm:text-sm">
             <span className="font-semibold">Community-led emergency relief for Nigerian graduates in the U.S.</span>
             <span className="hidden sm:inline">Every gift helps protect stability during a difficult waiting period.</span>
           </div>
@@ -456,23 +460,25 @@ export default function App() {
         </section>
 
         <section id="bridge" className="mx-auto max-w-7xl px-4 pb-10 sm:px-6 sm:pb-12">
-          <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-gradient-to-r from-green-50 via-white to-blue-50 p-8 shadow-sm">
+          <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-gradient-to-r from-green-50 via-white to-blue-50 p-6 shadow-sm sm:p-8">
             <div className="grid items-center gap-8 md:grid-cols-[1.1fr_0.9fr]">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">
                   Support between graduation and employment
                 </p>
-                <h2 className="mt-3 text-3xl font-bold">Bridging the gap between graduation and legal work authorization.</h2>
+                <h2 className="mt-3 text-2xl font-bold sm:text-3xl">
+                  Bridging the gap between graduation and legal work authorization.
+                </h2>
                 <p className="mt-4 leading-7 text-slate-600">
                   This nonprofit initiative supports Nigerian graduates caught between completing their education in the United States and receiving the legal authorization they need to start work, earn income, and move forward with dignity.
                 </p>
               </div>
 
               <div className="relative h-64 rounded-[1.5rem] border border-slate-200 bg-white p-6">
-                <div className="absolute left-8 top-12 flex items-center gap-2 text-sm font-medium text-green-700">
+                <div className="absolute left-5 top-10 flex items-center gap-2 text-sm font-medium text-green-700 sm:left-8 sm:top-12">
                   <MapPinIcon className="h-4 w-4" /> Lagos
                 </div>
-                <div className="absolute bottom-12 right-8 flex items-center gap-2 text-sm font-medium text-blue-700">
+                <div className="absolute bottom-10 right-5 flex items-center gap-2 text-sm font-medium text-blue-700 sm:bottom-12 sm:right-8">
                   <MapPinIcon className="h-4 w-4" /> United States
                 </div>
                 <svg viewBox="0 0 400 220" className="absolute inset-0 h-full w-full">

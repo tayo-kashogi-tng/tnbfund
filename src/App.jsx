@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import founderPortrait from "./assets/hero.png";
+import founderPortrait from "./assets/tayo-salawu-themed.jpeg";
+import ibrahimAkoredePortrait from "./assets/ibrahim-akorede-themed.jpeg";
+import yemiAdedejiPortrait from "./assets/yemi-adedeji-themed-v2.jpeg";
 
 function SocialIcon({ label, children, href, onClick }) {
   if (href) {
@@ -104,6 +106,59 @@ function MenuIcon({ open }) {
   );
 }
 
+function BoardMemberCard({
+  name,
+  role,
+  image,
+  alt,
+  summary,
+  imageClassName,
+  instagram,
+  placeholder = false,
+}) {
+  return (
+    <article className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-lg">
+      <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-amber-100 via-white to-emerald-100 opacity-70 blur-xl" />
+      <div className="relative">
+        {placeholder ? (
+          <div className="flex h-[24rem] items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950 p-10">
+            <img
+              src="/icons.svg"
+              alt="The Nigerian Bridge Fund logo"
+              className="h-32 w-32 opacity-90 drop-shadow-[0_20px_40px_rgba(15,23,42,0.35)]"
+            />
+          </div>
+        ) : (
+          <img
+            src={image}
+            alt={alt}
+            className={`h-[24rem] w-full object-cover brightness-[1.03] saturate-[1.02] ${imageClassName ?? "object-center"}`}
+          />
+        )}
+
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/75 via-slate-950/15 to-transparent px-6 pb-6 pt-16 text-white">
+          <div className="text-xl font-semibold">{name}</div>
+          <div className="mt-1 text-sm text-white/80">{role}</div>
+        </div>
+      </div>
+      <div className="relative border-t border-slate-100 px-6 py-5">
+        <p className="text-sm leading-6 text-slate-600">{summary}</p>
+        {instagram && (
+          <a
+            href={instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-2 text-sm font-medium text-emerald-800 transition hover:bg-emerald-100"
+          >
+            <InstagramIcon />
+            <span>View Instagram</span>
+          </a>
+        )}
+      </div>
+    </article>
+  );
+}
+
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showStickyWidget, setShowStickyWidget] = useState(true);
@@ -167,6 +222,39 @@ export default function App() {
       question: "How can I ask a question before applying?",
       answer:
         "Use the contact section below to email the team directly if you need clarity on eligibility, documentation, or how the process works.",
+    },
+  ];
+
+  const boardMembers = [
+    {
+      name: "Tayo Salawu",
+      role: "Director 1 and Founder",
+      image: founderPortrait,
+      alt: "Portrait of Tayo Salawu",
+      imageClassName: "object-[center_28%]",
+      instagram: "https://www.instagram.com/tayokashogi/",
+      summary:
+        "An adept technology thought leader providing strategic leadership for the initiative and helping shape the fund's mission, outreach, and support strategy for Nigerian Bridge Fund NGO.",
+    },
+    {
+      name: "Yemi Adedeji",
+      role: "Director 2 and Secretary",
+      image: yemiAdedejiPortrait,
+      alt: "Portrait of Yemi Adedeji",
+      imageClassName: "object-[center_18%]",
+      instagram: "https://www.instagram.com/deyemzy_/",
+      summary:
+        "A cloud computing professional who supports board coordination, record-keeping, and strong governance as part of the leadership team. He also helps reinforce the structure, accountability, and operational discipline.",
+    },
+    {
+      name: "Ibrahim Akorede",
+      role: "Director 3 and Treasurer",
+      image: ibrahimAkoredePortrait,
+      alt: "Portrait of Ibrahim Akorede",
+      imageClassName: "object-[center_18%]",
+      instagram: "https://www.instagram.com/yomi.ai/",
+      summary:
+        "An experienced project manager who provides financial oversight and board leadership, helping ensure the fund remains accountable, transparent, and well-positioned to serve applicants responsibly.",
     },
   ];
 
@@ -383,47 +471,51 @@ export default function App() {
         </section>
 
         <section id="about" className="border-t border-green-100 bg-slate-50 px-4 py-12 sm:px-6 sm:py-16">
-          <div className="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-2">
-            <div className="relative mx-auto w-full max-w-sm">
-              <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-amber-100 via-white to-emerald-100 opacity-90 blur-xl" />
-              <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-lg">
-                <div className="relative">
-                  <img
-                    src={founderPortrait}
-                    alt="Portrait of founder Tayo Kashogi"
-                    className="h-[26rem] w-full object-cover object-[center_28%] brightness-[1.03] saturate-[1.02]"
-                  />
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/70 via-slate-950/15 to-transparent px-6 pb-6 pt-16 text-white">
-                    <div className="text-xl font-semibold">Tayo Kashogi</div>
-                    <div className="mt-1 text-sm text-white/80">Founder</div>
-                  </div>
-                </div>
-                <div className="border-t border-slate-100 px-6 py-5">
-                  <div className="text-sm font-medium text-slate-900">Founder’s Note</div>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">
-                    A community-led nonprofit supporting Nigerian graduates in the United States through work authorization delays with dignity and emergency relief.
-                  </p>
-                </div>
-              </div>
+          <div className="mx-auto max-w-7xl">
+            <div className="mx-auto max-w-3xl text-center">
+              <div className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Leadership</div>
+              <h2 className="mt-3 text-3xl font-bold">A board-led nonprofit built for trust, relief, and accountability</h2>
+              <p className="mt-4 leading-7 text-slate-600">
+                The Nigerian Bridge Fund is not a sole-proprietor initiative. It is led by a growing board committed to responsible stewardship, transparent support, and practical relief for Nigerian graduates in the United States facing work authorization delays.
+              </p>
             </div>
 
-            <div>
-              <h2 className="text-3xl font-bold">Why The Nigerian Bridge Fund exists</h2>
-              <p className="mt-4 leading-7 text-slate-600">
-                The Nigerian Bridge Fund was created after seeing how administrative and immigration delays can place recent Nigerian graduates in the United States under severe financial pressure through no fault of their own.
-              </p>
-              <p className="mt-4 leading-7 text-slate-600">
-                These are graduates who have completed their education, secured opportunities, and are ready to contribute. This initiative exists to provide temporary support while they wait for the authorization needed to begin working legally.
-              </p>
-              <div className="mt-5 rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm">
+            <div className="mt-10 grid gap-6 lg:grid-cols-3">
+              {boardMembers.map((member) => (
+                <BoardMemberCard
+                  key={member.name}
+                  name={member.name}
+                  role={member.role}
+                  image={member.image}
+                  alt={member.alt}
+                  summary={member.summary}
+                  imageClassName={member.imageClassName}
+                  instagram={member.instagram}
+                  placeholder={member.placeholder}
+                />
+              ))}
+            </div>
+
+            <div className="mt-10 grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
+              <div>
+                <h3 className="text-2xl font-bold">Why The Nigerian Bridge Fund exists</h3>
+                <p className="mt-4 leading-7 text-slate-600">
+                  The Nigerian Bridge Fund was created after seeing how administrative and immigration delays can place recent Nigerian graduates in the United States under severe financial pressure through no fault of their own.
+                </p>
+                <p className="mt-4 leading-7 text-slate-600">
+                  These are graduates who have completed their education, secured opportunities, and are ready to contribute. This initiative exists to provide temporary support while they wait for the authorization needed to begin working legally.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm">
                 <div className="text-sm font-semibold text-slate-900">Work authorization delays can mean:</div>
                 <ul className="mt-3 space-y-2 text-sm text-slate-600">
                   <li>• choosing between groceries and other basic bills</li>
                   <li>• struggling to cover rent while waiting for authorization</li>
                   <li>• carrying emotional stress at the very start of adult life</li>
                 </ul>
+                <p className="mt-4 font-medium text-slate-800">Community-led. Transparent. Built for relief.</p>
               </div>
-              <p className="mt-4 font-medium text-slate-800">Community-led. Transparent. Built for relief.</p>
             </div>
           </div>
         </section>

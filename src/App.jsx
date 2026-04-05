@@ -678,19 +678,21 @@ export default function App() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-10">
+        <section className="mx-auto max-w-5xl px-4 py-6 sm:px-6 sm:py-10">
           <div className="rounded-[2rem] border border-slate-200 bg-slate-50 p-6 shadow-sm sm:p-8">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <div className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Transparency Dashboard</div>
-                <h3 className="mt-2 text-3xl font-bold text-slate-900">A simple view of funds received, distributed, and currently available</h3>
+                <h3 className="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+                  Funds received, support distributed, and current balance
+                </h3>
               </div>
               {metrics.status === "ready" && metrics.data?.lastUpdated && (
                 <div className="text-sm text-slate-500">Last updated: {metrics.data.lastUpdated}</div>
               )}
             </div>
 
-            <div className="mt-8 grid gap-4 lg:grid-cols-3">
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
               {[
                 {
                   label: "Total Received",
@@ -725,13 +727,15 @@ export default function App() {
                   className={`rounded-[1.5rem] border ${card.accent} bg-white p-5 shadow-sm`}
                 >
                   <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">{card.label}</div>
-                  <div className="mt-3 text-3xl font-bold text-slate-900 sm:text-4xl">{card.value}</div>
+                  <div className="mt-3 break-words text-2xl font-bold text-slate-900 sm:text-3xl">
+                    {card.value}
+                  </div>
                   <p className="mt-3 text-sm leading-6 text-slate-600">{card.helper}</p>
                 </div>
               ))}
             </div>
 
-            <div className="mt-6 rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm text-slate-600">
+            <div className="mt-6 rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm leading-6 text-slate-600">
               {metrics.status === "ready" ? (
                 <p>
                   {metrics.data.note ??

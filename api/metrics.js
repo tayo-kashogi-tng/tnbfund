@@ -1,13 +1,9 @@
 const DEFAULT_SOURCE = "manual";
 
-function json(status, body) {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-      "Cache-Control": "no-store",
-    },
-  });
+function sendJson(res, status, body) {
+  res.setHeader("Content-Type", "application/json; charset=utf-8");
+  res.setHeader("Cache-Control", "no-store");
+  return res.status(status).json(body);
 }
 
 function parseNumber(value) {
@@ -175,9 +171,9 @@ export const config = {
   runtime: "nodejs",
 };
 
-export default async function handler(request) {
-  if (request.method && request.method !== "GET") {
-    return json(405, { error: "Method not allowed" });
+export default async function handler(req, res) {
+  if (req.method && req.method !== "GET") {
+    return sendJson(res, 405, { error: "Method not allowed" });
   }
 
   const source = process.env.METRICS_SOURCE ?? DEFAULT_SOURCE;
@@ -193,9 +189,9 @@ export default async function handler(request) {
       metrics = readManualMetrics(process.env);
     }
 
-    return json(200, metrics);
+    return sendJson(res, 200, metrics);
   } catch (error) {
-    return json(500, {
+    return sendJson(res, 500, {
       error: error instanceof Error ? error.message : "Failed to load metrics",
       source,
     });

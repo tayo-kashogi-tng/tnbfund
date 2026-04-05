@@ -394,16 +394,24 @@ export default function App() {
           <div className="relative">
             <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-green-100 via-white to-blue-100 opacity-80 blur-2xl" />
             <div className="relative rounded-3xl border bg-white p-6 shadow-lg">
-              <div className="text-sm text-slate-500">Emergency Support Campaign</div>
-              <div className="mt-1 text-3xl font-bold">$25,000 Goal</div>
+              <div className="text-sm text-slate-500">Campaign Overview</div>
+              <div className="mt-1 text-3xl font-bold">Live progress below</div>
               <p className="mt-3 text-sm text-slate-600">
-                Providing one-time $500 emergency support to as many as 50 Nigerian graduates in the United States.
+                Our GoFundMe widget below is the live source for campaign totals and fundraising progress.
               </p>
               <div className="mt-4 rounded-2xl bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
-                <span className="font-semibold">$500 helps one graduate stay afloat.</span> Even smaller gifts matter when many people give together.
+                <span className="font-semibold">Emergency support helps cover urgent essentials.</span> Every contribution helps reduce pressure on a graduate facing a temporary delay.
               </div>
               <div className="mt-4 border-t pt-4 text-sm text-slate-500">
-                All applications are reviewed. Funds are distributed directly. Updates are shared regularly.
+                Applications are reviewed carefully, support is distributed directly, and live campaign updates are reflected in the embedded fundraiser.
+              </div>
+              <div className="mt-5">
+                <a
+                  href="#live-totals"
+                  className="inline-flex rounded-xl bg-emerald-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm"
+                >
+                  View live totals
+                </a>
               </div>
             </div>
           </div>
@@ -591,9 +599,10 @@ export default function App() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl border-t border-slate-200 px-4 py-10 sm:px-6 sm:py-14">
+        <section id="live-totals" className="mx-auto max-w-7xl border-t border-slate-200 px-4 py-10 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-3xl rounded-[2rem] border border-slate-200 bg-white p-6 text-center shadow-sm">
             <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">Live Campaign</div>
+            <h3 className="mt-2 text-2xl font-bold text-slate-900">Live totals from GoFundMe</h3>
 
             <div className="mt-6">
               <div
@@ -603,7 +612,7 @@ export default function App() {
             </div>
 
             <p className="mt-4 text-sm text-slate-500">
-              This is a live view of the fundraiser. Progress updates automatically, so every new gift brings the community one step closer to supporting another graduate.
+              This embedded fundraiser is the live source of truth for campaign totals and progress. As donations come in on GoFundMe, the widget updates here automatically.
             </p>
 
             <div className="mt-6">

@@ -107,9 +107,12 @@ METRICS_SOURCE=manual
 MANUAL_TOTAL_RAISED=10000
 MANUAL_DEPLOYED_FUNDS=2500
 MANUAL_CURRENT_BALANCE=7500
+MANUAL_GOFUNDME_RECEIVED=7000
+MANUAL_PAYPAL_RECEIVED=2500
+MANUAL_OTHER_RECEIVED=500
 MANUAL_CURRENCY=USD
 MANUAL_LAST_UPDATED=2026-04-04
-MANUAL_NOTE=Updated manually by the team.
+MANUAL_NOTE=Total received includes GoFundMe, PayPal, and other reconciled contributions.
 ```
 
 ### Google Sheets mode
@@ -128,18 +131,22 @@ GOOGLE_SHEETS_RANGE=Dashboard!A2:B7
 Recommended sheet layout:
 
 ```text
-total_raised      10000
-deployed_funds    2500
-current_balance   7500
-last_updated      2026-04-04
+gofundme_received 12000
+paypal_received    3500
+other_received      500
+total_raised      16000
+deployed_funds     4200
+current_balance   11800
+last_updated      2026-04-11
 currency          USD
-note              Updated manually from payout records.
+note              Total received includes GoFundMe, PayPal, and other reconciled contributions.
 ```
 
 Notes:
 
 - The simplest setup is a read-only sheet that is viewable by link.
 - The function uses the official Google Sheets API `spreadsheets.values.get` endpoint.
+- `total_raised` can be supplied directly, or derived from `gofundme_received + paypal_received + other_received`.
 
 ### Airtable mode
 
@@ -166,12 +173,15 @@ Example rows:
 
 ```text
 Metric            Value
-total_raised      10000
-deployed_funds    2500
-current_balance   7500
-last_updated      2026-04-04
+gofundme_received 12000
+paypal_received    3500
+other_received      500
+total_raised      16000
+deployed_funds     4200
+current_balance   11800
+last_updated      2026-04-11
 currency          USD
-note              Updated manually from payout records.
+note              Total received includes GoFundMe, PayPal, and other reconciled contributions.
 ```
 
 Notes:

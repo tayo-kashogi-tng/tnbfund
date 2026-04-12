@@ -6,7 +6,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' https://www.gofundme.com https://*.gofundme.com; style-src 'self' 'unsafe-inline' https://www.gofundme.com https://*.gofundme.com; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://www.gofundme.com https://*.gofundme.com; frame-src https://www.gofundme.com https://*.gofundme.com; upgrade-insecure-requests"
+          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' https://www.gofundme.com https://*.gofundme.com https://www.paypal.com; style-src 'self' 'unsafe-inline' https://www.gofundme.com https://*.gofundme.com https://www.paypal.com; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://www.gofundme.com https://*.gofundme.com https://www.paypal.com; frame-src https://www.gofundme.com https://*.gofundme.com https://www.paypal.com; upgrade-insecure-requests"
         },
         {
           "key": "Referrer-Policy",

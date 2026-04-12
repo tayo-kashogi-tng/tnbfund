@@ -3,6 +3,53 @@ import founderPortrait from "./assets/tayo-salawu-outpaint-themed.jpeg";
 import ibrahimAkoredePortrait from "./assets/ibrahim-akorede-themed.jpeg";
 import yemiAdedejiPortrait from "./assets/yemi-adedeji-themed-v3.jpeg";
 
+const PAYPAL_HOSTED_BUTTON_ID = "925WKXMXYYL6C";
+const PAYPAL_DONATE_URL = `https://www.paypal.com/donate/?hosted_button_id=${PAYPAL_HOSTED_BUTTON_ID}`;
+
+function PayPalDonateButton({ className = "" }) {
+  return (
+    <a
+      href={PAYPAL_DONATE_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`inline-flex min-h-[46px] items-center justify-center rounded-xl border border-[#c9def7] bg-[#ffc439] px-5 py-2.5 text-sm font-semibold text-[#003087] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#ffb800] ${className}`}
+    >
+      Donate on PayPal
+    </a>
+  );
+}
+
+function DonationChoicePair({
+  donateUrl,
+  centered = false,
+  stackedOnMobile = false,
+  withTopMargin = true,
+  goFundMeLabel = "Donate on GoFundMe",
+  goFundMeClassName = "",
+  equalWidth = false,
+  compact = false,
+}) {
+  const layoutClassName = `${centered ? "justify-center" : ""} ${withTopMargin ? "mt-6" : ""} flex flex-wrap items-stretch gap-3 ${stackedOnMobile ? "flex-col sm:flex-row" : ""}`;
+  const sharedButtonClassName = compact
+    ? "min-h-[52px] rounded-2xl px-5 py-3 text-base"
+    : "min-h-[46px] rounded-xl px-5 py-2.5 text-sm";
+  const widthClassName = equalWidth ? "flex-1 min-w-[220px]" : "";
+
+  return (
+    <div className={layoutClassName}>
+      <a
+        href={donateUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`inline-flex items-center justify-center font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-emerald-800 ${sharedButtonClassName} ${widthClassName} bg-emerald-700 ${goFundMeClassName}`}
+      >
+        {goFundMeLabel}
+      </a>
+      <PayPalDonateButton className={`${sharedButtonClassName} ${widthClassName}`} />
+    </div>
+  );
+}
+
 function SocialIcon({ label, children, href, onClick }) {
   if (href) {
     return (
@@ -106,6 +153,25 @@ function MenuIcon({ open }) {
   );
 }
 
+function ChevronIcon({ open }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={`h-5 w-5 transition-transform ${open ? "rotate-180" : ""}`}
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="m6 9 6 6 6-6"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 function BoardMemberCard({
   name,
   role,
@@ -173,6 +239,11 @@ function formatCurrency(amount, currency) {
 
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openFaq, setOpenFaq] = useState(0);
+  const [showFullStory, setShowFullStory] = useState(false);
+  const [showFullTestimonial, setShowFullTestimonial] = useState(false);
+  const [emailFeedback, setEmailFeedback] = useState(null);
+  const [shareFeedback, setShareFeedback] = useState(null);
   const [metrics, setMetrics] = useState({
     status: "loading",
     data: null,
@@ -203,6 +274,8 @@ export default function App() {
 
   const testimonials = [
     {
+      shortQuote:
+        "Living in the United States without work authorization has been deeply demanding, especially while caring for my daughter and trying to stay hopeful.",
       quote:
         "Living in the United States, where bills never seem to stop and the cost of survival is high, life without a job or a driver's license has been incredibly demanding, especially as I care for my daughter. After completing my master's degree in December 2025, I have faced one immigration hurdle after another, each requiring significant financial sacrifice. Just as I was celebrating that my work authorization was on the way, my country was suddenly placed on a temporary hold. Since then, I have been surviving on my savings and the kindness of loved ones while doing everything I can to provide for my daughter. Even through these setbacks, I remain hopeful and resilient. My greatest motivation is building a stable future for both of us, and I am determined to keep pushing forward.",
       name: "Temitope",
@@ -214,22 +287,22 @@ export default function App() {
     {
       question: "Who can apply for support?",
       answer:
-        "The fund is designed for Nigerian graduates in the United States who are experiencing financial strain while waiting for work authorization or facing a similar transition-related gap.",
+        "The fund is for Nigerian graduates in the United States facing financial strain while waiting for work authorization or a similar transition-related gap.",
     },
     {
       question: "How is support decided?",
       answer:
-        "Applications are reviewed based on eligibility, urgency, and available funds. Support is intended to be one-time relief for essential needs during a temporary difficult period.",
+        "Applications are reviewed for eligibility, urgency, and available funds. Support is intended as one-time relief for essential needs during a temporary gap.",
     },
     {
       question: "What kind of expenses can this help with?",
       answer:
-        "Support may help with urgent basics like groceries, rent pressure, transportation, and other immediate essentials while someone is waiting for stability.",
+        "Support may help cover groceries, rent pressure, transportation, and other urgent essentials during a temporary waiting period.",
     },
     {
       question: "How can I ask a question before applying?",
       answer:
-        "Use the contact section below to email the team directly if you need clarity on eligibility, documentation, or how the process works.",
+        "If your question is not covered here, use the support card below to copy the team email or open your email app directly.",
     },
   ];
 
@@ -242,7 +315,7 @@ export default function App() {
       imageClassName: "object-center brightness-[0.98] saturate-[0.92] contrast-[1.04]",
       instagram: "https://www.instagram.com/tayokashogi/",
       summary:
-        "Tayo is an AI and IT technical leader with over a decade of experience in enterprise technology strategy, platform transformation, and scalable digital solutions. He has led impactful initiatives across complex environments, helping shape systems, strategy, and innovation with a practical, people-centered approach.\n\nHe is dedicated to supporting efforts that preserve stability, dignity, and opportunity when they matter.",
+        "Tayo is an AI and IT leader with 10+ years of experience leading strategic platform transformation and complex digital systems.\n\nHe brings a practical, people-centered approach to efforts that protect stability, dignity, and opportunity when they matter most.",
     },
     {
       name: "Yemi Adedeji",
@@ -252,7 +325,7 @@ export default function App() {
       imageClassName: "object-[center_18%]",
       instagram: "https://www.instagram.com/deyemzy_/",
       summary:
-        "Yemi is a Cloud Platform Architect and DevSecOps Engineer with deep expertise in AWS, cloud security, and infrastructure engineering. He has led critical cloud initiatives across enterprise and public sector environments, delivering secure, scalable, and compliant systems.\n\nHe is passionate about designing resilient solutions and backing initiatives that create stability and possibility during pivotal moments.",
+        "Yemi is a Cloud Platform Architect and DevSecOps Engineer with deep experience in AWS, cloud security, and infrastructure engineering.\n\nHe builds secure, resilient systems and backs initiatives that create stability and possibility during pivotal moments.",
     },
     {
       name: "Ibrahim Akorede",
@@ -262,21 +335,65 @@ export default function App() {
       imageClassName: "object-[center_18%]",
       instagram: "https://www.instagram.com/yomi.ai/",
       summary:
-        "Ibrahim is a Technical Project Manager with deep expertise in cloud contact center implementations, stakeholder governance, and AWS-architected solutions. He has led cross-functional initiatives across complex delivery environments, helping ensure accountability, structure, and strong operational execution.\n\nHe is driven to apply disciplined leadership in ways that strengthen communities.",
+        "Ibrahim is a Technical Project Manager with deep experience in cloud contact centers, stakeholder governance, and AWS-architected solutions.\n\nHe brings operational discipline and accountability to community efforts that strengthen stability.",
     },
   ];
 
-  const openExternal = (url) => window.open(url, "_blank", "noopener,noreferrer");
   const closeMenu = () => setMobileMenuOpen(false);
 
   const handleCopyLink = async () => {
     try {
       await navigator.clipboard.writeText(PRIMARY_DONATE_URL);
-      alert("Link copied! Share it anywhere.");
+      setShareFeedback({
+        tone: "success",
+        message: "Link copied. You can share it anywhere.",
+      });
     } catch {
-      alert("Copy failed — please copy manually.");
+      setShareFeedback({
+        tone: "error",
+        message: "Copy failed. Please copy the fundraiser link manually.",
+      });
     }
   };
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(CONTACT_EMAIL);
+      setEmailFeedback({
+        tone: "success",
+        message: "Email address copied. You can paste it anywhere.",
+      });
+    } catch {
+      setEmailFeedback({
+        tone: "error",
+        message: "Copy failed. Please copy the email address manually.",
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (!shareFeedback) return undefined;
+
+    const timeoutId = window.setTimeout(() => {
+      setShareFeedback(null);
+    }, 2500);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [shareFeedback]);
+
+  useEffect(() => {
+    if (!emailFeedback) return undefined;
+
+    const timeoutId = window.setTimeout(() => {
+      setEmailFeedback(null);
+    }, 2500);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [emailFeedback]);
 
   useEffect(() => {
     let cancelled = false;
@@ -315,6 +432,75 @@ export default function App() {
     };
   }, []);
 
+  const transparencyValueText =
+    metrics.status === "ready"
+      ? {
+          totalRaised: formatCurrency(metrics.data.totalRaised, metrics.data.currency),
+          deployedFunds: formatCurrency(metrics.data.deployedFunds, metrics.data.currency),
+          currentBalance: formatCurrency(metrics.data.currentBalance, metrics.data.currency),
+        }
+      : metrics.status === "error"
+        ? {
+            totalRaised: "Temporarily unavailable",
+            deployedFunds: "Temporarily unavailable",
+            currentBalance: "Temporarily unavailable",
+          }
+        : {
+            totalRaised: "Loading...",
+            deployedFunds: "Loading...",
+            currentBalance: "Loading...",
+          };
+
+  const transparencyCards = [
+    {
+      label: "Total Received",
+      helper: metrics.data?.breakdown ? "Funds received across all sources" : "Funds received into the initiative",
+      accent: "border-emerald-200",
+      value: transparencyValueText.totalRaised,
+    },
+    {
+      label: "Support Distributed",
+      helper: "Funds already used for support",
+      accent: "border-amber-200",
+      value: transparencyValueText.deployedFunds,
+    },
+    {
+      label: "Current Balance",
+      helper: "Funds currently available for impact",
+      accent: "border-blue-200",
+      value: transparencyValueText.currentBalance,
+    },
+  ];
+
+  const transparencyBreakdown =
+    metrics.status === "ready" && metrics.data?.breakdown ? metrics.data.breakdown : null;
+
+  const transparencyBreakdownCards = transparencyBreakdown
+    ? [
+        {
+          label: "GoFundMe",
+          value: formatCurrency(transparencyBreakdown.goFundMeReceived, metrics.data.currency),
+          accent: "border-emerald-100 bg-emerald-50/70",
+        },
+        {
+          label: "PayPal",
+          value: formatCurrency(transparencyBreakdown.paypalReceived, metrics.data.currency),
+          accent: "border-amber-100 bg-amber-50/70",
+        },
+        {
+          label: "Other",
+          value: formatCurrency(transparencyBreakdown.otherReceived, metrics.data.currency),
+          accent: "border-blue-100 bg-blue-50/70",
+        },
+      ]
+    : [];
+
+  const transparencyMethodologyNote =
+    metrics.status === "ready"
+      ? metrics.data.note ??
+        "Total received includes reconciled contributions from GoFundMe, PayPal, and other approved sources."
+      : null;
+
   return (
     <div className="min-h-screen bg-white text-slate-900">
       <header className="sticky top-0 z-20 border-b bg-white/95 backdrop-blur">
@@ -333,18 +519,17 @@ export default function App() {
             <a href="#about" className="hover:text-emerald-700">About</a>
             <a href="#how" className="hover:text-emerald-700">How it Works</a>
             <a href="#live-totals" className="hover:text-emerald-700">Transparency</a>
-            <a href="#donate" className="hover:text-emerald-700">Donate</a>
             <a href="#apply" className="hover:text-emerald-700">Apply</a>
-            <a href="#contact" className="hover:text-emerald-700">Contact</a>
+            <a href="#faq" className="hover:text-emerald-700">FAQ</a>
           </nav>
 
           <div className="flex items-center gap-2">
-            <button
-              onClick={() => openExternal(PRIMARY_DONATE_URL)}
+            <a
+              href="#donate"
               className="hidden rounded-xl bg-emerald-700 px-4 py-2 text-sm font-semibold text-white shadow-sm sm:inline-flex"
             >
               Donate
-            </button>
+            </a>
 
             <button
               type="button"
@@ -364,15 +549,15 @@ export default function App() {
               <a href="#about" onClick={closeMenu} className="hover:text-emerald-700">About</a>
               <a href="#how" onClick={closeMenu} className="hover:text-emerald-700">How it Works</a>
               <a href="#live-totals" onClick={closeMenu} className="hover:text-emerald-700">Transparency</a>
-              <a href="#donate" onClick={closeMenu} className="hover:text-emerald-700">Donate</a>
               <a href="#apply" onClick={closeMenu} className="hover:text-emerald-700">Apply</a>
-              <a href="#contact" onClick={closeMenu} className="hover:text-emerald-700">Contact</a>
-              <button
-                onClick={() => openExternal(PRIMARY_DONATE_URL)}
+              <a href="#faq" onClick={closeMenu} className="hover:text-emerald-700">FAQ</a>
+              <a
+                href="#donate"
+                onClick={closeMenu}
                 className="mt-2 rounded-xl bg-emerald-700 px-4 py-2 text-left text-white"
               >
                 Donate
-              </button>
+              </a>
             </div>
           </div>
         )}
@@ -386,9 +571,9 @@ export default function App() {
           </div>
         </section>
 
-        <section className="mx-auto grid max-w-7xl items-center gap-8 px-4 py-10 sm:gap-10 sm:px-6 sm:py-20 md:grid-cols-2">
+        <section className="mx-auto grid max-w-7xl items-start gap-7 px-4 py-7 sm:gap-10 sm:px-6 sm:py-16 md:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)]">
           <div className="max-w-2xl">
-            <h1 className="text-4xl font-bold leading-tight sm:text-[3.35rem] md:text-[3.9rem] md:leading-[1.04]">
+            <h1 className="text-[2.7rem] font-bold leading-[1.02] sm:text-[3.35rem] md:text-[3.9rem] md:leading-[1.04]">
               Emergency relief for Nigerian graduates in the U.S.
             </h1>
 
@@ -404,58 +589,86 @@ export default function App() {
               </span>
             </div>
 
-            <p className="mt-5 max-w-xl text-lg text-slate-600">
-              We support graduates facing work authorization delays and short-term financial pressure while they wait to begin work legally in the United States.
+            <p className="mt-5 max-w-xl text-[1.05rem] leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
+              We support Nigerian graduates facing work authorization delays and financial pressure while they wait to begin work legally in the US.
+            </p>
+            <p className="mt-3 max-w-xl text-sm leading-6 text-slate-500">
+              The fund exists to protect essentials and help people stay steady during a difficult gap.
             </p>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <button
-                onClick={() => openExternal(PRIMARY_DONATE_URL)}
-                className="w-full rounded-2xl bg-emerald-700 px-6 py-3 text-center font-semibold text-white shadow-sm sm:w-auto"
+            <div className="mt-7 grid gap-3 sm:max-w-xl sm:grid-cols-2">
+              <a
+                href="#donate"
+                className="inline-flex min-h-[56px] w-full items-center justify-center rounded-2xl border border-emerald-200 bg-emerald-50 px-5 py-3 text-center text-base font-semibold text-emerald-800 shadow-sm transition hover:-translate-y-0.5 hover:bg-emerald-100"
               >
-                Donate to Support a Graduate
-              </button>
+                See ways to give
+              </a>
               <a
                 href={APPLICATION_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full rounded-2xl border px-6 py-3 text-center sm:w-auto"
+                className="inline-flex min-h-[56px] w-full items-center justify-center rounded-2xl border border-slate-900 bg-white px-5 py-3 text-center text-base font-semibold text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-700"
               >
                 Apply for Emergency Support
               </a>
             </div>
 
             <p className="mt-4 text-sm text-slate-500">Transparent • Community-driven • One-time direct support</p>
-            <p className="mt-3 max-w-xl text-sm leading-6 text-slate-500">
-              Donations help protect essentials and peace of mind while graduates wait for legal authorization to begin work.
-            </p>
           </div>
 
           <div className="relative">
             <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-green-100 via-white to-blue-100 opacity-80 blur-2xl" />
-            <div className="relative rounded-3xl border bg-white p-6 shadow-lg">
+            <div className="relative rounded-3xl border bg-white p-5 shadow-lg sm:p-7">
               <div className="text-sm text-slate-500">Campaign Overview</div>
-              <div className="mt-1 text-3xl font-bold">Current fundraiser</div>
-              <p className="mt-3 text-sm text-slate-600">
-                Support the active GoFundMe campaign and view the latest public totals directly on the fundraiser page.
+              <div className="mt-2 text-3xl font-bold leading-tight">Current fundraiser</div>
+              <p className="mt-4 text-base leading-7 text-slate-600">
+                Support the active fundraiser and choose the giving option that works best for you.
               </p>
-              <div className="mt-4 rounded-2xl bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
+              <div className="mt-5 rounded-2xl bg-emerald-50 px-4 py-3 text-sm leading-6 text-emerald-900">
                 <span className="font-semibold">Current campaign goal: $25,000.</span> Contributions of any size help reduce pressure on graduates facing a temporary delay.
               </div>
-              <div className="mt-4 border-t pt-4 text-sm text-slate-500">
+              <div className="mt-5 border-t pt-5 text-sm leading-6 text-slate-500">
                 Applications are reviewed carefully and support is distributed directly to eligible applicants.
               </div>
-              <div className="mt-5">
-                <a
-                  href={PRIMARY_DONATE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex rounded-xl bg-emerald-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm"
-                >
-                  View fundraiser on GoFundMe
-                </a>
+              <div className="mt-6">
+                <DonationChoicePair
+                  donateUrl={PRIMARY_DONATE_URL}
+                  goFundMeLabel="Donate on GoFundMe"
+                  equalWidth
+                  compact
+                />
+                <p className="mt-3 text-sm text-slate-500">
+                  The transparency section below remains the source of truth for this fund.
+                </p>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-7xl px-4 pb-5 sm:px-6 sm:pb-10">
+          <div className="grid gap-4 sm:grid-cols-3">
+            {[
+              {
+                title: "Board-led oversight",
+                body: "Managed by a growing board committed to responsible stewardship.",
+              },
+              {
+                title: "Transparent reporting",
+                body: "Fund activity and balances are published in the transparency section below.",
+              },
+              {
+                title: "Careful applicant review",
+                body: "Support decisions are reviewed based on eligibility, urgency, and available funds.",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="rounded-[1.5rem] border border-slate-200 bg-white px-5 py-4 shadow-sm"
+              >
+                <div className="text-sm font-semibold uppercase tracking-wide text-emerald-700">{item.title}</div>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{item.body}</p>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -470,7 +683,7 @@ export default function App() {
                   Bridging the gap between graduation and legal work authorization.
                 </h2>
                 <p className="mt-4 leading-7 text-slate-600">
-                  This nonprofit initiative supports Nigerian graduates caught between completing their education in the United States and receiving the legal authorization they need to start work, earn income, and move forward with dignity.
+                  This initiative supports Nigerian graduates caught between finishing school in the US and getting the authorization they need to work, earn income, and move forward with dignity.
                 </p>
               </div>
 
@@ -517,7 +730,7 @@ export default function App() {
           <div className="rounded-[2rem] border border-amber-100 bg-amber-50 px-6 py-5 shadow-sm">
             <div className="text-sm font-semibold uppercase tracking-wide text-amber-800">Why donors give</div>
             <p className="mt-2 leading-7 text-slate-700">
-              Donors give because a temporary administrative delay can quickly become housing stress, food insecurity, and financial instability for graduates who are ready to work but legally unable to begin yet.
+              Administrative delays can quickly become housing stress, food insecurity, and financial instability for graduates who are ready to work but still unable to begin.
             </p>
           </div>
         </section>
@@ -528,7 +741,7 @@ export default function App() {
               <div className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Leadership</div>
               <h2 className="mt-3 text-3xl font-bold">A board-led nonprofit built for trust, relief, and accountability</h2>
               <p className="mt-4 leading-7 text-slate-600">
-                The Nigerian Bridge Fund is not a sole-proprietor initiative. It is led by a growing board committed to responsible stewardship, transparent support, and practical relief for Nigerian graduates in the United States facing work authorization delays.
+                The Nigerian Bridge Fund is led by a growing board committed to responsible stewardship, transparent support, and practical relief for Nigerian graduates in the United States facing work authorization delays.
               </p>
             </div>
 
@@ -552,11 +765,28 @@ export default function App() {
               <div>
                 <h3 className="text-2xl font-bold">Why The Nigerian Bridge Fund exists</h3>
                 <p className="mt-4 leading-7 text-slate-600">
-                  The Nigerian Bridge Fund was created after seeing how administrative and immigration delays can place recent Nigerian graduates in the United States under severe financial pressure through no fault of their own.
+                  The fund provides temporary support for recent Nigerian graduates in the U.S. who are ready to work but delayed by administrative hurdles outside their control.
                 </p>
-                <p className="mt-4 leading-7 text-slate-600">
-                  These are graduates who have completed their education, secured opportunities, and are ready to contribute. This initiative exists to provide temporary support while they wait for the authorization needed to begin working legally.
-                </p>
+                <div className="mt-4 rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm">
+                  <div className="text-sm font-semibold text-slate-900">At a glance</div>
+                  <ul className="mt-3 space-y-2 text-sm leading-6 text-slate-600">
+                    <li>• short-term relief during a temporary gap</li>
+                    <li>• support for graduates already positioned to move forward</li>
+                    <li>• board-led oversight with a focus on dignity and stability</li>
+                  </ul>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowFullStory((value) => !value)}
+                  className="mt-4 text-sm font-semibold text-emerald-700 transition hover:text-emerald-800"
+                >
+                  {showFullStory ? "Show less" : "Read more about the fund"}
+                </button>
+                {showFullStory && (
+                  <p className="mt-3 leading-7 text-slate-600">
+                    These are graduates who have finished school, secured opportunities, and are ready to contribute. The initiative helps them stay afloat while they wait for legal work authorization.
+                  </p>
+                )}
               </div>
 
               <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm">
@@ -572,71 +802,63 @@ export default function App() {
           </div>
         </section>
 
-        <section id="how" className="mx-auto max-w-7xl border-t border-blue-100 px-4 py-10 sm:px-6 sm:py-16">
+        <section id="how" className="mx-auto max-w-7xl border-t border-blue-100 px-4 py-9 sm:px-6 sm:py-16">
           <h2 className="text-center text-3xl font-bold">How emergency support for applicants works</h2>
           <div className="mt-8 grid gap-4 text-center sm:mt-10 sm:gap-6 md:grid-cols-3">
             <div>
               <div className="font-semibold">Apply</div>
               <p className="mt-2 text-sm text-slate-600">
-                Nigerian graduates submit a short support application with verification
+                Submit a short application and basic verification
               </p>
             </div>
             <div>
               <div className="font-semibold">Review</div>
               <p className="mt-2 text-sm text-slate-600">
-                Applications are reviewed based on eligibility, urgency, and available funds
+                The team reviews eligibility, urgency, and available funds
               </p>
             </div>
             <div>
               <div className="font-semibold">Support</div>
               <p className="mt-2 text-sm text-slate-600">
-                Approved applicants receive one-time emergency financial assistance
+                Approved applicants receive one-time emergency assistance
               </p>
             </div>
           </div>
         </section>
 
-        <section id="live-totals" className="mx-auto max-w-7xl border-t border-slate-200 px-4 py-8 sm:px-6 sm:py-14">
+        <section id="live-totals" className="mx-auto max-w-7xl border-t border-slate-200 px-4 py-7 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-3xl rounded-[2rem] border border-slate-200 bg-white p-6 text-center shadow-sm">
             <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">Current Fundraiser</div>
-            <h3 className="mt-2 text-2xl font-bold text-slate-900">Support the campaign directly on GoFundMe</h3>
+            <h3 className="mt-2 text-2xl font-bold text-slate-900">Current public fundraiser</h3>
             <div className="mt-5 rounded-2xl bg-emerald-50 px-5 py-4 text-left text-emerald-950">
               <div className="text-sm font-semibold uppercase tracking-wide text-emerald-800">Campaign Goal</div>
               <div className="mt-2 text-3xl font-bold">$25,000</div>
               <p className="mt-3 text-sm leading-6 text-emerald-900">
-                Visit the official GoFundMe campaign page to view the latest amount raised, current progress, and donation activity.
+                Visit the public fundraiser page to see the latest campaign progress.
               </p>
             </div>
 
             <p className="mt-4 text-sm text-slate-500">
-              GoFundMe remains the source of truth for the latest public totals, campaign progress, and donation activity.
+              Use this page for public campaign activity.
             </p>
 
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-              <button
-                onClick={() => openExternal(PRIMARY_DONATE_URL)}
-                className="rounded-xl bg-emerald-700 px-5 py-2.5 text-sm font-semibold text-white"
-              >
-                Donate on GoFundMe
-              </button>
-              <a
-                href={PRIMARY_DONATE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-xl border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-700"
-              >
-                View latest campaign totals
-              </a>
-            </div>
+            <a
+              href={PRIMARY_DONATE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex min-h-[46px] items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-400"
+            >
+              View latest campaign info on GoFundMe
+            </a>
           </div>
         </section>
 
-        <section className="mx-auto max-w-5xl px-4 py-5 sm:px-6 sm:py-10">
+        <section className="mx-auto max-w-5xl px-4 py-4 sm:px-6 sm:py-10">
           <div className="rounded-[2rem] border border-slate-200 bg-slate-50 p-6 shadow-sm sm:p-8">
             <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
               <div className="min-w-0">
                 <div className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Transparency Dashboard</div>
-                <h3 className="mt-2 max-w-3xl text-xl font-bold text-slate-900 sm:text-2xl lg:text-[2rem] lg:leading-tight">
+                <h3 className="mt-2 text-xl font-bold text-slate-900 sm:text-2xl lg:text-[1.8rem] lg:leading-tight xl:whitespace-nowrap">
                   Funds received, support distributed, and current balance
                 </h3>
               </div>
@@ -648,41 +870,17 @@ export default function App() {
             </div>
 
             <div className="mt-8 grid gap-4 md:grid-cols-3">
-              {[
-                {
-                  label: "Total Received",
-                  helper: "Funds received into the initiative",
-                  accent: "border-emerald-200",
-                  value:
-                    metrics.status === "ready"
-                      ? formatCurrency(metrics.data.totalRaised, metrics.data.currency)
-                      : "Loading...",
-                },
-                {
-                  label: "Support Distributed",
-                  helper: "Funds already deployed to support graduates",
-                  accent: "border-amber-200",
-                  value:
-                    metrics.status === "ready"
-                      ? formatCurrency(metrics.data.deployedFunds, metrics.data.currency)
-                      : "Loading...",
-                },
-                {
-                  label: "Current Balance",
-                  helper: "Funds currently available for impact",
-                  accent: "border-blue-200",
-                  value:
-                    metrics.status === "ready"
-                      ? formatCurrency(metrics.data.currentBalance, metrics.data.currency)
-                      : "Loading...",
-                },
-              ].map((card) => (
+              {transparencyCards.map((card) => (
                 <div
                   key={card.label}
                   className={`rounded-[1.5rem] border ${card.accent} bg-white p-5 shadow-sm`}
                 >
                   <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">{card.label}</div>
-                  <div className="mt-3 break-words text-2xl font-bold text-slate-900 sm:text-3xl">
+                  <div
+                    className={`mt-3 break-words text-2xl font-bold sm:text-3xl ${
+                      metrics.status === "ready" ? "text-slate-900" : "text-slate-500"
+                    }`}
+                  >
                     {card.value}
                   </div>
                   <p className="mt-3 text-sm leading-6 text-slate-600">{card.helper}</p>
@@ -690,20 +888,60 @@ export default function App() {
               ))}
             </div>
 
-            <div className="mt-6 rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm leading-6 text-slate-600">
-              {metrics.status === "ready" ? (
-                <p>
-                  {metrics.data.note ??
-                    "These figures are maintained by the team and published here to support transparency around funds received, support distributed, and available balance."}
-                </p>
-              ) : metrics.status === "error" ? (
-                <p>
-                  Transparency data is temporarily unavailable. You can still view the fundraiser directly on GoFundMe while the dashboard source is being configured.
-                </p>
-              ) : (
-                <p>Loading transparency data...</p>
-              )}
-            </div>
+            {metrics.status === "ready" ? (
+              <div className={`mt-6 grid gap-4 ${transparencyBreakdown ? "xl:grid-cols-[0.9fr_1.1fr]" : ""}`}>
+                {transparencyBreakdown && (
+                  <div className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm">
+                    <div className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
+                      Source breakdown
+                    </div>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                      Total received is reconciled across the contribution sources below.
+                    </p>
+                    <div className="mt-4 grid gap-3 sm:grid-cols-3 xl:grid-cols-1">
+                      {transparencyBreakdownCards.map((source) => (
+                        <div
+                          key={source.label}
+                          className={`rounded-xl border px-4 py-3 ${source.accent}`}
+                        >
+                          <div className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                            {source.label}
+                          </div>
+                          <div className="mt-2 text-xl font-bold text-slate-900">{source.value}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm">
+                  <div className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
+                    How totals are reconciled
+                  </div>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                    {transparencyMethodologyNote}
+                  </p>
+                  <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                    <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-600">
+                      Figures are updated by the team after source records are reviewed and reconciled.
+                    </div>
+                    <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-600">
+                      Current balance reflects total received minus support already distributed.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="mt-6 rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm leading-6 text-slate-600">
+                {metrics.status === "error" ? (
+                  <p>
+                    Transparency data is temporarily unavailable right now. You can still view the public fundraiser while the live dashboard reconnects.
+                  </p>
+                ) : (
+                  <p>Loading transparency data...</p>
+                )}
+              </div>
+            )}
           </div>
         </section>
 
@@ -713,7 +951,7 @@ export default function App() {
               <div className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-800">Testimonial</div>
               <h2 className="mt-3 text-3xl font-bold text-slate-900">A real story behind the waiting</h2>
               <p className="mx-auto mt-4 max-w-2xl leading-7 text-slate-600">
-                Behind every delayed authorization is a graduate trying to stay steady, care for family, and hold on to hope.
+                Behind every delayed authorization is a graduate trying to stay steady, care for family, and keep hope alive.
               </p>
             </div>
 
@@ -725,8 +963,15 @@ export default function App() {
                 >
                   <div className="text-5xl leading-none text-amber-300">"</div>
                   <p className="mt-3 text-base leading-8 text-slate-700 sm:text-lg">
-                    {testimonial.quote}
+                    {showFullTestimonial ? testimonial.quote : testimonial.shortQuote}
                   </p>
+                  <button
+                    type="button"
+                    onClick={() => setShowFullTestimonial((value) => !value)}
+                    className="mt-4 text-sm font-semibold text-amber-800 transition hover:text-amber-900"
+                  >
+                    {showFullTestimonial ? "Show less" : "Read full story"}
+                  </button>
                   <div className="mt-6 border-t border-slate-100 pt-4">
                     <div className="font-semibold text-slate-900">{testimonial.name}</div>
                     <div className="mt-1 text-sm text-slate-500">{testimonial.location}</div>
@@ -745,24 +990,13 @@ export default function App() {
             <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">Give Freely</div>
             <h3 className="mt-2 text-2xl font-bold text-slate-900">Every amount makes a meaningful difference</h3>
             <p className="mx-auto mt-3 max-w-2xl leading-7 text-slate-600">
-              There is no fixed giving cap on this campaign. Every contribution, large or small, helps strengthen the relief available to Nigerian graduates navigating a temporary work authorization delay.
+              Every contribution helps strengthen the relief available to Nigerian graduates facing a temporary work authorization delay.
             </p>
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-              <button
-                onClick={() => openExternal(PRIMARY_DONATE_URL)}
-                className="rounded-xl bg-emerald-700 px-6 py-3 font-semibold text-white shadow-sm"
-              >
-                Donate any amount on GoFundMe
-              </button>
-              <a
-                href={PRIMARY_DONATE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-xl border border-slate-300 px-6 py-3 font-semibold text-slate-700"
-              >
-                View fundraiser details
-              </a>
-            </div>
+            <DonationChoicePair
+              donateUrl={PRIMARY_DONATE_URL}
+              centered
+              goFundMeLabel="Donate on GoFundMe"
+            />
           </div>
         </section>
 
@@ -788,69 +1022,89 @@ export default function App() {
               <div className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-800">FAQ</div>
               <h2 className="mt-3 text-3xl font-bold text-slate-900">Common questions from applicants and donors</h2>
               <p className="mx-auto mt-4 max-w-2xl leading-7 text-slate-600">
-                This section is here to answer the questions people are most likely to ask before emailing the team.
+                A quick guide to the questions people ask most before reaching out.
               </p>
             </div>
 
             <div className="mt-8 grid gap-4">
-              {faqs.map((faq) => (
-                <div
-                  key={faq.question}
-                  className="rounded-2xl border border-amber-100 bg-white px-5 py-5 shadow-sm"
-                >
-                  <h3 className="text-lg font-semibold text-slate-900">{faq.question}</h3>
-                  <p className="mt-2 leading-7 text-slate-600">{faq.answer}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+              {faqs.map((faq, index) => {
+                const isOpen = openFaq === index;
 
-        <section id="contact" className="border-t border-emerald-100 bg-white px-4 py-10 sm:px-6 sm:py-16">
-          <div className="mx-auto max-w-5xl rounded-[2rem] border border-slate-200 bg-slate-50 p-6 shadow-sm sm:p-8">
-            <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr]">
-              <div>
-                <div className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Contact Us</div>
-                <h2 className="mt-3 text-3xl font-bold text-slate-900">Questions about the nonprofit or support process?</h2>
-                <p className="mt-4 leading-7 text-slate-600">
-                  If you have questions about eligibility, donations, partnerships, or the mission of the fund, reach out by email and the team will respond as soon as possible.
-                </p>
-                <a
-                  href={`mailto:${CONTACT_EMAIL}`}
-                  className="mt-6 inline-flex rounded-xl bg-emerald-700 px-5 py-3 font-semibold text-white shadow-sm"
-                >
-                  Email the team
-                </a>
-                <p className="mt-3 text-sm text-slate-500">
-                  To reduce spam and keep communication manageable, inquiries are handled through a shared email inbox.
+                return (
+                  <div
+                    key={faq.question}
+                    className="overflow-hidden rounded-2xl border border-amber-100 bg-white shadow-sm"
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setOpenFaq(isOpen ? -1 : index)}
+                      aria-expanded={isOpen}
+                      className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left"
+                    >
+                      <h3 className="text-lg font-semibold text-slate-900">{faq.question}</h3>
+                      <span className="shrink-0 text-amber-700">
+                        <ChevronIcon open={isOpen} />
+                      </span>
+                    </button>
+
+                    {isOpen && (
+                      <div className="border-t border-amber-100 px-5 pb-5 pt-4">
+                        <p className="leading-7 text-slate-600">{faq.answer}</p>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+            <div className="mt-8 rounded-[2rem] border border-emerald-100 bg-white p-6 shadow-sm sm:p-8">
+              <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+                <div className="max-w-2xl">
+                  <div className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">
+                    Still have a question?
+                  </div>
+                  <h3 className="mt-3 text-2xl font-bold text-slate-900 sm:text-3xl">
+                    Reach the team directly if you still need clarity
+                  </h3>
+                  <p className="mt-3 leading-7 text-slate-600">
+                    If your question is not covered above, copy the shared inbox address below or open your email app as a fallback.
+                  </p>
+                </div>
+
+                <div className="grid gap-3 sm:min-w-[17rem]">
+                  <button
+                    type="button"
+                    onClick={handleCopyEmail}
+                    className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-emerald-700 px-5 py-3 font-semibold text-white shadow-sm transition hover:bg-emerald-800"
+                  >
+                    Copy email address
+                  </button>
+                  <a
+                    href={`mailto:${CONTACT_EMAIL}`}
+                    className="inline-flex min-h-[48px] items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-3 font-semibold text-slate-700 shadow-sm transition hover:border-slate-400"
+                  >
+                    Open email app
+                  </a>
+                </div>
+              </div>
+
+              <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4">
+                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Shared inbox</div>
+                <div className="mt-2 break-all text-lg font-semibold text-slate-900 sm:text-xl">{CONTACT_EMAIL}</div>
+                <p className="mt-2 text-sm leading-6 text-slate-500">
+                  To reduce spam and keep communication manageable, inquiries are handled through one shared inbox.
                 </p>
               </div>
 
-              <div className="grid gap-4">
-                <a
-                  href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Question about support application")}`}
-                  className="rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm transition hover:border-emerald-300"
-                >
-                  <div className="font-semibold text-slate-900">Application Questions</div>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">
-                    Reach out if you are unsure whether you qualify or need clarity before applying.
+              <div aria-live="polite" className="mt-3 min-h-[1.5rem] text-sm">
+                {emailFeedback && (
+                  <p
+                    className={`font-medium ${
+                      emailFeedback.tone === "success" ? "text-emerald-700" : "text-amber-800"
+                    }`}
+                  >
+                    {emailFeedback.message}
                   </p>
-                </a>
-
-                <a
-                  href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Donation or partnership inquiry")}`}
-                  className="rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm transition hover:border-emerald-300"
-                >
-                  <div className="font-semibold text-slate-900">Donation and Partnership Questions</div>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">
-                    Use this for sponsorships, collaborations, media outreach, or donor-related questions.
-                  </p>
-                </a>
-
-                <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm">
-                  <div className="font-semibold text-slate-900">Primary Email</div>
-                  <p className="mt-2 text-sm text-slate-600">{CONTACT_EMAIL}</p>
-                </div>
+                )}
               </div>
             </div>
           </div>
@@ -859,16 +1113,18 @@ export default function App() {
         <section className="bg-gradient-to-r from-green-700 via-emerald-700 to-blue-700 px-4 py-10 text-center text-white sm:px-6 sm:py-16">
           <h2 className="text-3xl font-bold">Help a Nigerian graduate stay hopeful while they wait</h2>
           <p className="mx-auto mt-4 max-w-2xl leading-7">
-            Your donation helps provide stability for Nigerian graduates navigating a temporary but deeply challenging work authorization delay. It reminds someone at the start of their career that this delay does not have to define their future.
+            Your donation helps provide stability for Nigerian graduates navigating a difficult work authorization delay. It reminds someone at the start of their career that this delay does not have to define their future.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-            <button
-              onClick={() => openExternal(PRIMARY_DONATE_URL)}
-              className="w-full rounded-xl bg-white px-6 py-3 font-semibold text-emerald-800 shadow-sm sm:w-auto"
-            >
-              Donate to the fund
-            </button>
-            <div className="flex flex-wrap items-center justify-center gap-2 rounded-xl border border-white/30 px-3 py-2">
+            <DonationChoicePair
+              donateUrl={PRIMARY_DONATE_URL}
+              centered
+              withTopMargin={false}
+              stackedOnMobile
+              goFundMeLabel="Donate on GoFundMe"
+              goFundMeClassName="bg-emerald-800/90 shadow-[0_10px_24px_rgba(6,95,70,0.25)] hover:bg-emerald-900 border border-emerald-500/30"
+            />
+            <div className="flex min-h-[46px] flex-wrap items-center justify-center gap-2 rounded-xl border border-white/30 px-3 py-2">
               <SocialIcon label="Share on LinkedIn" href={shareLinks.linkedin}><LinkedInIcon /></SocialIcon>
               <SocialIcon label="Share on Facebook" href={shareLinks.facebook}><FacebookIcon /></SocialIcon>
               <SocialIcon label="Share on X" href={shareLinks.twitter}><XIcon /></SocialIcon>
@@ -881,23 +1137,46 @@ export default function App() {
               <SocialIcon label="Share by email" href={shareLinks.email}><MailIcon /></SocialIcon>
               <SocialIcon label="Open fund link" href={shareLinks.instagram}><InstagramIcon /></SocialIcon>
             </div>
+            <div aria-live="polite" className="min-h-[1.5rem] text-sm">
+              {shareFeedback && (
+                <p
+                  className={`font-medium ${
+                    shareFeedback.tone === "success" ? "text-emerald-100" : "text-amber-100"
+                  }`}
+                >
+                  {shareFeedback.message}
+                </p>
+              )}
+            </div>
           </div>
         </section>
 
         <div className="fixed inset-x-0 bottom-0 z-30 border-t border-slate-200 bg-white/95 px-4 py-3 shadow-[0_-6px_20px_rgba(15,23,42,0.08)] backdrop-blur xl:hidden">
-          <div className="mx-auto flex max-w-7xl items-center gap-3">
+          <div className="mx-auto flex max-w-7xl flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
             <div className="min-w-0 flex-1">
               <div className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
                 Live fundraiser
               </div>
-              <div className="truncate text-sm text-slate-700">Every gift helps another graduate stay afloat</div>
+              <div className="text-sm leading-5 text-slate-700 sm:truncate">Every gift helps another graduate stay afloat</div>
             </div>
-            <button
-              onClick={() => openExternal(PRIMARY_DONATE_URL)}
-              className="rounded-xl bg-emerald-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm"
-            >
-              Donate Now
-            </button>
+            <div className="grid w-full grid-cols-2 gap-2 sm:w-auto sm:flex sm:items-stretch">
+              <a
+                href={PRIMARY_DONATE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-[42px] items-center justify-center rounded-xl bg-emerald-700 px-3 py-2 text-sm font-semibold text-white shadow-sm sm:px-4"
+              >
+                GoFundMe
+              </a>
+              <a
+                href={PAYPAL_DONATE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-[42px] items-center justify-center rounded-xl bg-[#ffc439] px-3 py-2 text-sm font-semibold text-[#003087] shadow-sm sm:px-4"
+              >
+                PayPal
+              </a>
+            </div>
           </div>
         </div>
       </main>

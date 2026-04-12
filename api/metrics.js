@@ -1,4 +1,5 @@
 const DEFAULT_SOURCE = "manual";
+const PUBLIC_METRICS_ERROR = "Transparency data is temporarily unavailable.";
 
 function sendJson(res, status, body) {
   res.setHeader("Content-Type", "application/json; charset=utf-8");
@@ -63,10 +64,48 @@ function pickMetricValue(map, keys) {
   return null;
 }
 
+function requireEnvValue(env, key) {
+  const value = env[key];
+
+  if (value === undefined || value === null || value === "") {
+    throw new Error(`Missing required manual metric: ${key}`);
+  }
+
+  return value;
+}
+
+function buildBreakdown(raw) {
+  const goFundMeReceived = parseNumber(
+    pickMetricValue(raw, ["gofundme_received", "gofundme received", "gofundme"])
+  );
+  const paypalReceived = parseNumber(
+    pickMetricValue(raw, ["paypal_received", "paypal received", "paypal"])
+  );
+  const otherReceived = parseNumber(
+    pickMetricValue(raw, ["other_received", "other received", "other"])
+  );
+
+  if ([goFundMeReceived, paypalReceived, otherReceived].every((value) => value === null)) {
+    return null;
+  }
+
+  return {
+    goFundMeReceived: goFundMeReceived ?? 0,
+    paypalReceived: paypalReceived ?? 0,
+    otherReceived: otherReceived ?? 0,
+  };
+}
+
 function coerceMetrics(raw, sourceLabel) {
-  const totalRaised = parseNumber(
+  const breakdown = buildBreakdown(raw);
+  const explicitTotalRaised = parseNumber(
     pickMetricValue(raw, ["total_raised", "total raised", "raised", "donations_received"])
   );
+  const totalRaised =
+    explicitTotalRaised ??
+    (breakdown
+      ? breakdown.goFundMeReceived + breakdown.paypalReceived + breakdown.otherReceived
+      : null);
   const deployedFunds = parseNumber(
     pickMetricValue(raw, ["deployed_funds", "deployed funds", "support_distributed", "spent"])
   );
@@ -77,7 +116,11 @@ function coerceMetrics(raw, sourceLabel) {
     pickMetricValue(raw, ["last_updated", "last updated", "updated_at", "updated"]) ?? null
   );
   const currency = pickMetricValue(raw, ["currency", "currency_code"]) ?? "USD";
-  const note = pickMetricValue(raw, ["note", "notes", "summary"]) ?? null;
+  const note =
+    pickMetricValue(raw, ["note", "notes", "summary"]) ??
+    (breakdown
+      ? "Total received includes GoFundMe, PayPal, and other reconciled contributions."
+      : null);
 
   if ([totalRaised, deployedFunds, currentBalance].some((value) => value === null)) {
     throw new Error(
@@ -93,15 +136,19 @@ function coerceMetrics(raw, sourceLabel) {
     lastUpdated,
     currency,
     note,
+    breakdown,
   };
 }
 
 function readManualMetrics(env) {
   return coerceMetrics(
     {
-      total_raised: env.MANUAL_TOTAL_RAISED ?? "0",
-      deployed_funds: env.MANUAL_DEPLOYED_FUNDS ?? "0",
-      current_balance: env.MANUAL_CURRENT_BALANCE ?? "0",
+      total_raised: requireEnvValue(env, "MANUAL_TOTAL_RAISED"),
+      deployed_funds: requireEnvValue(env, "MANUAL_DEPLOYED_FUNDS"),
+      current_balance: requireEnvValue(env, "MANUAL_CURRENT_BALANCE"),
+      gofundme_received: env.MANUAL_GOFUNDME_RECEIVED ?? null,
+      paypal_received: env.MANUAL_PAYPAL_RECEIVED ?? null,
+      other_received: env.MANUAL_OTHER_RECEIVED ?? null,
       last_updated: env.MANUAL_LAST_UPDATED ?? null,
       currency: env.MANUAL_CURRENCY ?? "USD",
       note: env.MANUAL_NOTE ?? "Updated manually by the team.",
@@ -222,9 +269,13 @@ export default async function handler(req, res) {
 
     return sendJson(res, 200, metrics);
   } catch (error) {
-    return sendJson(res, 500, {
-      error: error instanceof Error ? error.message : "Failed to load metrics",
+    console.error("Failed to load metrics", {
       source,
+      error: error instanceof Error ? error.message : error,
+    });
+
+    return sendJson(res, 500, {
+      error: PUBLIC_METRICS_ERROR,
     });
   }
 }

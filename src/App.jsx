@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import founderPortrait from "./assets/tayo-salawu-outpaint-themed.jpeg";
 import ibrahimAkoredePortrait from "./assets/ibrahim-akorede-themed.jpeg";
 import yemiAdedejiPortrait from "./assets/yemi-adedeji-themed-v3.jpeg";
@@ -1190,6 +1191,7 @@ export default function App() {
           </a>
         </p>
       </footer>
+      <Analytics />
     </div>
   );
 }

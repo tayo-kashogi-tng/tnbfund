@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import founderPortrait from "./assets/tayo-salawu-outpaint-themed.jpeg";
 import ibrahimAkoredePortrait from "./assets/ibrahim-akorede-themed.jpeg";
+import mosunmolaOladapoPortrait from "./assets/mosunmola-oladapo.jpeg";
 import yemiAdedejiPortrait from "./assets/yemi-adedeji-themed-v3.jpeg";
 
 const PAYPAL_HOSTED_BUTTON_ID = "925WKXMXYYL6C";
@@ -312,17 +313,27 @@ export default function App() {
       role: "Founder & Director",
       image: founderPortrait,
       alt: "Portrait of Tayo Salawu",
-      imageClassName: "object-center brightness-[0.98] saturate-[0.92] contrast-[1.04]",
+      imageClassName: "object-center brightness-[0.99] saturate-[0.95] contrast-[1.03]",
       instagram: "https://www.instagram.com/tayokashogi/",
       summary:
         "Tayo is an AI and IT leader with 10+ years of experience leading strategic platform transformation and complex digital systems.\n\nHe brings a practical, people-centered approach to efforts that protect stability, dignity, and opportunity when they matter most.",
+    },
+    {
+      name: "Mosunmola Oladapo",
+      role: "Director of Development",
+      image: mosunmolaOladapoPortrait,
+      alt: "Portrait of Mosunmola Oladapo",
+      imageClassName: "object-[center_28%] brightness-[0.99] saturate-[0.93] contrast-[1.02]",
+      instagram: "https://www.instagram.com/atechmama/",
+      summary:
+        "Mosunmola is a Cloud Platform Engineer with deep experience in scalable, dependable cloud environments and modernization.\n\nShe brings a thoughtful, education-centered perspective to initiatives that connect students to opportunities.",
     },
     {
       name: "Yemi Adedeji",
       role: "Director & Secretary",
       image: yemiAdedejiPortrait,
       alt: "Portrait of Yemi Adedeji",
-      imageClassName: "object-[center_18%]",
+      imageClassName: "object-[center_18%] brightness-[0.99] saturate-[0.95] contrast-[1.03]",
       instagram: "https://www.instagram.com/deyemzy_/",
       summary:
         "Yemi is a Cloud Platform Architect and DevSecOps Engineer with deep experience in AWS, cloud security, and infrastructure engineering.\n\nHe builds secure, resilient systems and backs initiatives that create stability and possibility during pivotal moments.",
@@ -332,7 +343,7 @@ export default function App() {
       role: "Director & Treasurer",
       image: ibrahimAkoredePortrait,
       alt: "Portrait of Ibrahim Akorede",
-      imageClassName: "object-[center_18%]",
+      imageClassName: "object-[center_18%] brightness-[0.99] saturate-[0.95] contrast-[1.03]",
       instagram: "https://www.instagram.com/yomi.ai/",
       summary:
         "Ibrahim is a Technical Project Manager with deep experience in cloud contact centers, stakeholder governance, and AWS-architected solutions.\n\nHe brings operational discipline and accountability to community efforts that strengthen stability.",
@@ -590,10 +601,10 @@ export default function App() {
             </div>
 
             <p className="mt-5 max-w-xl text-[1.05rem] leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
-              We support Nigerian graduates facing work authorization delays and financial pressure while they wait to begin work legally in the US.
+              We support Nigerian graduates facing work authorization delays and financial pressure while they wait to begin work legally in the U.S.
             </p>
             <p className="mt-3 max-w-xl text-sm leading-6 text-slate-500">
-              The fund exists to protect essentials and help people stay steady during a difficult gap.
+              The fund exists to protect essential needs and help applicants remain steady during a difficult gap.
             </p>
 
             <div className="mt-7 grid gap-3 sm:max-w-xl sm:grid-cols-2">
@@ -682,8 +693,8 @@ export default function App() {
                 <h2 className="mt-3 text-2xl font-bold sm:text-3xl">
                   Bridging the gap between graduation and legal work authorization.
                 </h2>
-                <p className="mt-4 leading-7 text-slate-600">
-                  This initiative supports Nigerian graduates caught between finishing school in the US and getting the authorization they need to work, earn income, and move forward with dignity.
+              <p className="mt-4 leading-7 text-slate-600">
+                  This initiative supports Nigerian graduates caught between finishing school in the U.S. and receiving the authorization they need to work, earn income, and move forward with dignity.
                 </p>
               </div>
 
@@ -730,7 +741,7 @@ export default function App() {
           <div className="rounded-[2rem] border border-amber-100 bg-amber-50 px-6 py-5 shadow-sm">
             <div className="text-sm font-semibold uppercase tracking-wide text-amber-800">Why donors give</div>
             <p className="mt-2 leading-7 text-slate-700">
-              Administrative delays can quickly become housing stress, food insecurity, and financial instability for graduates who are ready to work but still unable to begin.
+              Administrative delays can quickly lead to housing stress, food insecurity, and financial instability for graduates who are ready to work but still unable to begin.
             </p>
           </div>
         </section>
@@ -745,7 +756,7 @@ export default function App() {
               </p>
             </div>
 
-            <div className="mt-8 grid gap-6 lg:grid-cols-3">
+            <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
               {boardMembers.map((member) => (
                 <BoardMemberCard
                   key={member.name}
@@ -784,7 +795,7 @@ export default function App() {
                 </button>
                 {showFullStory && (
                   <p className="mt-3 leading-7 text-slate-600">
-                    These are graduates who have finished school, secured opportunities, and are ready to contribute. The initiative helps them stay afloat while they wait for legal work authorization.
+                    These are graduates who have finished school, secured opportunities, and are ready to contribute. The initiative helps them stay afloat while they wait for legal work authorization and their next chapter to begin.
                   </p>
                 )}
               </div>
@@ -834,12 +845,12 @@ export default function App() {
               <div className="text-sm font-semibold uppercase tracking-wide text-emerald-800">Campaign Goal</div>
               <div className="mt-2 text-3xl font-bold">$25,000</div>
               <p className="mt-3 text-sm leading-6 text-emerald-900">
-                Visit the public fundraiser page to see the latest campaign progress.
+                Visit the public fundraiser page to view the latest campaign progress.
               </p>
             </div>
 
             <p className="mt-4 text-sm text-slate-500">
-              Use this page for public campaign activity.
+              Use this page to review current public campaign activity.
             </p>
 
             <a
@@ -951,7 +962,7 @@ export default function App() {
               <div className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-800">Testimonial</div>
               <h2 className="mt-3 text-3xl font-bold text-slate-900">A real story behind the waiting</h2>
               <p className="mx-auto mt-4 max-w-2xl leading-7 text-slate-600">
-                Behind every delayed authorization is a graduate trying to stay steady, care for family, and keep hope alive.
+                Behind every delayed authorization is a graduate working to stay steady, care for family, and hold on to hope.
               </p>
             </div>
 
@@ -990,7 +1001,7 @@ export default function App() {
             <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">Give Freely</div>
             <h3 className="mt-2 text-2xl font-bold text-slate-900">Every amount makes a meaningful difference</h3>
             <p className="mx-auto mt-3 max-w-2xl leading-7 text-slate-600">
-              Every contribution helps strengthen the relief available to Nigerian graduates facing a temporary work authorization delay.
+              Every contribution strengthens the relief available to Nigerian graduates facing a temporary work authorization delay.
             </p>
             <DonationChoicePair
               donateUrl={PRIMARY_DONATE_URL}
@@ -1005,7 +1016,7 @@ export default function App() {
           className="border-t border-blue-100 bg-slate-50 px-4 py-10 text-center sm:px-6 sm:py-16"
         >
           <h2 className="text-3xl font-bold">Apply for emergency support</h2>
-          <p className="mt-4 text-slate-600">If you are a Nigerian graduate in the U.S. and meet the eligibility criteria, submit your application below.</p>
+          <p className="mt-4 text-slate-600">If you are a Nigerian graduate in the U.S. and meet the eligibility criteria, you can submit your application below.</p>
           <a
             href={APPLICATION_URL}
             target="_blank"
@@ -1066,7 +1077,7 @@ export default function App() {
                     Reach the team directly if you still need clarity
                   </h3>
                   <p className="mt-3 leading-7 text-slate-600">
-                    If your question is not covered above, copy the shared inbox address below or open your email app as a fallback.
+                    If your question is not covered above, copy the shared inbox address below or open your email app to contact the team directly.
                   </p>
                 </div>
 
@@ -1091,7 +1102,7 @@ export default function App() {
                 <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Shared inbox</div>
                 <div className="mt-2 break-all text-lg font-semibold text-slate-900 sm:text-xl">{CONTACT_EMAIL}</div>
                 <p className="mt-2 text-sm leading-6 text-slate-500">
-                  To reduce spam and keep communication manageable, inquiries are handled through one shared inbox.
+                  To reduce spam and keep communication manageable, all inquiries are handled through one shared inbox.
                 </p>
               </div>
 
